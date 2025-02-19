@@ -1,0 +1,27 @@
+# 0.1.0 (2025-02-19)
+
+
+### Features
+
+* **host:** configure luna.shorty ([32be2a0](https://github.com/99linesofcode/nixos-config/commit/32be2a03e9c1a5fcc6612e97f9322e52def43b1d))
+* initial flake based NixOS configuration ([f6211d6](https://github.com/99linesofcode/nixos-config/commit/f6211d6ca21da041856855b766f47f16fb51962f))
+* **module:** bluetooth settings ([5618e3d](https://github.com/99linesofcode/nixos-config/commit/5618e3d7d8408260b2cd8d27f6772c67c25e1e38))
+* **module:** docker ([2a95df0](https://github.com/99linesofcode/nixos-config/commit/2a95df0b77eb152dabc3dc1fdd6a6d90966e4616))
+* **module:** draft for yubikey support ([f5c4526](https://github.com/99linesofcode/nixos-config/commit/f5c4526b4c7b19f6e32fdb0141ba1f5f9fc24dc3))
+* **module:** hyprland ([e21f374](https://github.com/99linesofcode/nixos-config/commit/e21f374e77a35a7cc9eb45a8538fddd2179c4de3))
+* **module:** intel CPU ([bba92c4](https://github.com/99linesofcode/nixos-config/commit/bba92c4aa1937f3e522e9f30af89b3692625c40b))
+* **module:** linux gaming ([91609dc](https://github.com/99linesofcode/nixos-config/commit/91609dcc5bbbad2ce59134794471d9faae25b74a))
+* **module:** locale settings ([d561861](https://github.com/99linesofcode/nixos-config/commit/d56186141a547e6e9579fe52e7b5519ccd06e632))
+* **module:** low-level multimedia using pipewire and wireplumber ([d8fe6e2](https://github.com/99linesofcode/nixos-config/commit/d8fe6e2b6175357611181e876e4e292fecd05132))
+* **module:** network configuration ([711186d](https://github.com/99linesofcode/nixos-config/commit/711186ddbcbb1d5d82a2b87ccb69b20a4e7b31ad))
+* **module:** nix specific settings such as gc and optimization ([3f9236e](https://github.com/99linesofcode/nixos-config/commit/3f9236ecc274e453493e07e4cf13571c486aa22b))
+* **module:** nvidia GPU ([874708b](https://github.com/99linesofcode/nixos-config/commit/874708b7be565df12ca58c027c12793d5654bf9d))
+* **module:** openssh ([c482124](https://github.com/99linesofcode/nixos-config/commit/c4821241dcc284721fe6493acb99ede7628b4a55))
+* **module:** power management using thermald and TLP ([cfc21cf](https://github.com/99linesofcode/nixos-config/commit/cfc21cf5d5b79e6d10f9e0a5161aab1a10341627))
+* **module:** security and hardening ([c1ba314](https://github.com/99linesofcode/nixos-config/commit/c1ba314c5533c15ef3b4385773618a8dfe0d666d))
+* **module:** shared home-manager configuration ([46ff2b6](https://github.com/99linesofcode/nixos-config/commit/46ff2b602116a02a41945de6775875fed8db14d1))
+* **user:** user configuration for shorty ([2d8305e](https://github.com/99linesofcode/nixos-config/commit/2d8305e5b49ec0bf464c48deff688404742b9485))
+* **workflow:** generate changelog on merge to main ([88aea6c](https://github.com/99linesofcode/nixos-config/commit/88aea6c274aa2a858ce890ec1a14c150257dbe22))
+
+
+
