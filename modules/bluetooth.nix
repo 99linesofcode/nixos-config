@@ -17,13 +17,11 @@ with lib;
       bluetooth = {
         enable = true;
         settings = {
-          general.experimental = true; # see: https://nixos.wiki/wiki/Bluetooth#Showing_battery_charge_of_bluetooth_devices
+          General = {
+            Experimental = true; # see: https://wiki.nixos.org/wiki/Bluetooth#Showing_battery_charge_of_bluetooth_devices
+          };
         };
       };
-    };
-
-    services = {
-      blueman.enable = true;
     };
 
     system.activationScripts = {
