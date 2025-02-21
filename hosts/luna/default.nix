@@ -28,6 +28,7 @@
     sound.enable = true;
     openssh.enable = true;
     steam.enable = true;
+    wayland.enable = true;
     # yubikey.enable = true;
   };
 
