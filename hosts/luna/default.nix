@@ -20,6 +20,7 @@
 
     bluetooth.enable = true;
     docker.enable = true;
+    graphics.enable = true;
     hyprland.enable = true;
     intel.enable = true;
     nvidia.enable = true;

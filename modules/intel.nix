@@ -13,14 +13,9 @@ with lib;
     host.intel.enable = mkEnableOption "intel";
   };
 
+  # see: https://wiki.nixos.org/wiki/Intel_Graphics
   config = mkIf cfg.enable {
-    # TODO: extract top list to dedicated/generic graphics module
     environment.systemPackages = with pkgs; [
-      # libva
-      # libva-utils
-      # vulkan-loader
-      # vulkan-tools
-      # vulkan-validation-layers
       vpl-gpu-rt
       intel-gpu-tools
     ];
@@ -28,7 +23,6 @@ with lib;
     hardware = {
       cpu.intel.updateMicrocode = true;
       graphics = {
-        enable = true;
         extraPackages = with pkgs; [
           intel-compute-runtime
           intel-media-driver # LIBVA_DRIVER_NAME=iHD
