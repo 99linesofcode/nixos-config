@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/99linesofcode/nixos-config/compare/v0.2.0...v0.3.0) (2025-02-21)
+
+
+### Features
+
+* automatically login shorty on luna ([a13f83c](https://github.com/99linesofcode/nixos-config/commit/a13f83cec467b9a0caf21fadfd5ddaa7a6873113))
+
+
+
 # [0.2.0](https://github.com/99linesofcode/nixos-config/compare/v0.1.0...v0.2.0) (2025-02-21)
 
 
