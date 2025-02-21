@@ -18,11 +18,5 @@ with lib;
         enable = mkDefault true;
       };
     };
-
-    services = {
-      dbus.packages = [ pkgs.gcr ]; # required for pinentry-gnome3 to work
-      gnome.gnome-keyring.enable = true;
-      udisks2.enable = true; # allow udiskie to query and manipulate storage devices
-    };
   };
 }
