@@ -37,6 +37,7 @@
   };
 
   services = {
+    getty.autologinUser = "shorty";
     udisks2.enable = true;
   };
 }
