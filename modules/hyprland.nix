@@ -16,6 +16,7 @@ with lib;
     programs = {
       hyprland = {
         enable = mkDefault true;
+        withUWSM = mkDefault true;
       };
     };
   };
