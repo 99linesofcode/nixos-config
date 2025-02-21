@@ -1,4 +1,20 @@
-# 0.1.0 (2025-02-19)
+# [0.2.0](https://github.com/99linesofcode/nixos-config/compare/v0.1.0...v0.2.0) (2025-02-21)
+
+
+### Bug Fixes
+
+* **intel:** Quick Sync Video and Accelerated Video Playback ([fc46035](https://github.com/99linesofcode/nixos-config/commit/fc46035791995442afec51fc674d02b37f086fff))
+
+
+### Features
+
+* automatically import module files ([f4bc486](https://github.com/99linesofcode/nixos-config/commit/f4bc4865d865657a825a10f93427435b3b3c8e19))
+* **hyprland:** enable UWSM for starting with systemd ([69305c9](https://github.com/99linesofcode/nixos-config/commit/69305c9f87f93ee362bbabf8bf81b369aae68b16))
+* **nvidia:** nvidia-vaapi-driver for Accelerated Video Playback through NVD ([1e227fd](https://github.com/99linesofcode/nixos-config/commit/1e227fd0d4b368882b904f7384b4481ed102df3d))
+
+
+
+# [0.1.0](https://github.com/99linesofcode/nixos-config/compare/f6211d6ca21da041856855b766f47f16fb51962f...v0.1.0) (2025-02-19)
 
 
 ### Features
