@@ -20,6 +20,7 @@
 
     bluetooth.enable = true;
     docker.enable = true;
+    graphics.enable = true;
     hyprland.enable = true;
     intel.enable = true;
     nvidia.enable = true;
@@ -27,6 +28,7 @@
     sound.enable = true;
     openssh.enable = true;
     steam.enable = true;
+    wayland.enable = true;
     # yubikey.enable = true;
   };
 
@@ -35,7 +37,6 @@
   };
 
   services = {
-    automatic-timezoned.enable = true;
-    geoclue2.geoProviderUrl = "https://beacondb.net/v1/geolocate";
+    udisks2.enable = true;
   };
 }

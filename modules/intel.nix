@@ -13,27 +13,19 @@ with lib;
     host.intel.enable = mkEnableOption "intel";
   };
 
+  # see: https://wiki.nixos.org/wiki/Intel_Graphics
   config = mkIf cfg.enable {
-    # TODO: extract top list to dedicated/generic graphics module
     environment.systemPackages = with pkgs; [
-      # libva
-      # libva-utils
-      # vulkan-loader
-      # vulkan-tools
-      # vulkan-validation-layers
-      vpl-gpu-rt
       intel-gpu-tools
     ];
 
     hardware = {
       cpu.intel.updateMicrocode = true;
       graphics = {
-        enable = true;
         extraPackages = with pkgs; [
-          intel-compute-runtime
-          intel-media-driver # LIBVA_DRIVER_NAME=iHD
-          intel-vaapi-driver # LIBVA_DRIVER_NAME=i965
-          libvdpau-va-gl
+          intel-compute-runtime # OpenCL for gen8 and beyond
+          intel-media-sdk # Quick Sync Video for older processors
+          intel-vaapi-driver # Accelerated Video Playback for older processors. LIBVA_DRIVER_NAME=i965
         ];
       };
     };

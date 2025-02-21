@@ -42,10 +42,5 @@ with lib;
 
     programs.zsh.enable = true; # required in order to set user shell
 
-    # swap ESC and CAPSLOCK in console and beyond
-    console.useXkbConfig = true;
-    services = {
-      xserver.xkb.options = "caps:swapescape";
-    };
   };
 }

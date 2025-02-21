@@ -1,16 +1,9 @@
-{ ... }:
+{ lib, ... }:
+let
+  files = builtins.attrNames (builtins.readDir ./.);
+  moduleFileNames = builtins.filter (f: f != "default.nix" && lib.hasSuffix "nix" f) files;
+  moduleFilePaths = builtins.map (f: ./. + "/${f}") moduleFileNames;
+in
 {
-  imports = [
-    ./bluetooth.nix
-    ./docker.nix
-    ./hyprland.nix
-    ./intel.nix
-    ./network.nix
-    ./nvidia.nix
-    ./power-management.nix
-    ./sound.nix
-    ./steam.nix
-    ./openssh.nix
-    ./yubikey.nix
-  ];
+  imports = moduleFilePaths;
 }

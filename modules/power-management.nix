@@ -18,7 +18,7 @@ with lib;
 
       tlp = {
         enable = true;
-        # NOTE: https://linrunner.de/tlp/settings/index.html for additional settings
+        # see: https://linrunner.de/tlp/settings/index.html
         settings = {
           CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
           DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
