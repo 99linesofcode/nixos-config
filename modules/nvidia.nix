@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -17,12 +18,22 @@ with lib;
       "nouveau"
     ];
 
+    environment.sessionVariables = {
+      LIBVA_DRIVER_NAME = "nvidia";
+    };
+
     hardware = {
+      graphics = {
+        extraPackages = with pkgs; [
+          nvidia-vaapi-driver
+        ];
+      };
+
       nvidia = {
         modesetting.enable = true;
         nvidiaSettings = true;
         open = false;
-        package = config.boot.kernelPackages.nvidiaPackages.beta; # FIXME: see: https://github.com/NixOS/nixpkgs/issues/353990
+        package = config.boot.kernelPackages.nvidiaPackages.beta;
         powerManagement = {
           enable = true;
           finegrained = true;
