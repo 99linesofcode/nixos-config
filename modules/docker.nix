@@ -20,8 +20,7 @@ with lib;
       # ];
     };
 
-    # TODO: generally not required, reflect on what to do with this
-    # hardware.nvidia-container-toolkit.enable = true;
+    hardware.nvidia-container-toolkit.enable = true;
 
     virtualisation.docker = {
       enable = true;
