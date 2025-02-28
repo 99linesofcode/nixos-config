@@ -19,18 +19,5 @@
     kernelPackages = pkgs.linuxPackages_zen;
   };
 
-  hardware = {
-    openrazer = {
-      enable = true;
-      users = [ "shorty" ];
-    };
-  };
 
-  services = {
-    undervolt = {
-      enable = true;
-      coreOffset = -125;
-      gpuOffset = -925;
-    };
-  };
 }
