@@ -20,16 +20,8 @@
         bypassWorkqueues = true;
         device = "/dev/disk/by-uuid/6c47b269-ae73-4fa6-a7cc-808faff74f0f";
       };
-      systemd.enable = true;
     };
     kernelPackages = pkgs.linuxPackages_zen;
-    loader = {
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 16;
-      };
-      efi.canTouchEfiVariables = true;
-    };
   };
 
   hardware = {

@@ -19,6 +19,8 @@
 
   host = {
     user.shorty.enable = true;
+
+    efi.enable = true;
     btrfs.enable = true;
 
     bluetooth.enable = true;
