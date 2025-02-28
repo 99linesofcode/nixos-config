@@ -19,6 +19,7 @@
 
   host = {
     user.shorty.enable = true;
+    btrfs.enable = true;
 
     bluetooth.enable = true;
     docker.enable = true;
