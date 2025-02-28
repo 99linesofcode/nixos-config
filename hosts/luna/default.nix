@@ -1,22 +1,39 @@
 {
+  inputs,
   pkgs,
   ...
 }:
+let
+  username = "shorty";
+in
 {
   imports = [
+    inputs.disko.nixosModules.disko
+    ./disko.nix
     ./hardware-configuration.nix
     ../shared
   ];
 
   environment.systemPackages = with pkgs; [
     busybox
-    cryptsetup
     git
     zsh
   ];
 
+  hardware = {
+    openrazer = {
+      enable = true;
+      users = [ "${username}" ];
+    };
+  };
+
   host = {
-    user.shorty.enable = true;
+    user.${username}.enable = true;
+
+    efi.enable = true;
+    encryption.enable = true;
+    btrfs.enable = true;
+    swap.enable = true;
 
     bluetooth.enable = true;
     docker.enable = true;
@@ -37,7 +54,12 @@
   };
 
   services = {
-    getty.autologinUser = "shorty";
+    getty.autologinUser = "${username}"; # hardcoded because this is a single user system
     udisks2.enable = true;
+    undervolt = {
+      enable = true;
+      coreOffset = -125;
+      gpuOffset = -925;
+    };
   };
 }

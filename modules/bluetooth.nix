@@ -24,6 +24,8 @@ with lib;
       };
     };
 
+    services.blueman.enable = true; # required in order for HM module to work
+
     system.activationScripts = {
       rfKillUnblockBluetooth = {
         text = ''
