@@ -15,11 +15,6 @@
         "sd_mod"
       ];
       kernelModules = [ "dm-snapshot" ];
-      luks.devices."cryptlvm" = {
-        allowDiscards = true;
-        bypassWorkqueues = true;
-        device = "/dev/disk/by-uuid/6c47b269-ae73-4fa6-a7cc-808faff74f0f";
-      };
     };
     kernelPackages = pkgs.linuxPackages_zen;
   };

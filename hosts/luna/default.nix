@@ -12,7 +12,6 @@
 
   environment.systemPackages = with pkgs; [
     busybox
-    cryptsetup
     git
     zsh
   ];
@@ -21,6 +20,7 @@
     user.shorty.enable = true;
 
     efi.enable = true;
+    encryption.enable = true;
     btrfs.enable = true;
 
     bluetooth.enable = true;
