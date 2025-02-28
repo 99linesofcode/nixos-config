@@ -42,14 +42,5 @@ with lib;
         neededForBoot = true;
       };
     };
-
-    # TODO: extract to swap/suspend/hibernation module
-    swapDevices = [
-      {
-        device = "/dev/nvme0n1p2";
-      }
-    ];
-
-    boot.resumeDevice = "/dev/nvme0n1p2";
   };
 }

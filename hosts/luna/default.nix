@@ -33,6 +33,7 @@ in
     efi.enable = true;
     encryption.enable = true;
     btrfs.enable = true;
+    swap.enable = true;
 
     bluetooth.enable = true;
     docker.enable = true;
