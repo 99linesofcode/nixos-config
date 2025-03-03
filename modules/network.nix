@@ -1,23 +1,49 @@
-{ specialArgs, ... }:
+{ pkgs, specialArgs, ... }:
 let
   hostname = specialArgs.hostname;
 in
 {
-  networking = {
-    firewall = {
+  environment.systemPackages = with pkgs; [
+    impala
+    iw
+  ];
+
+  systemd = {
+    network = {
       enable = true;
-      allowedTCPPorts = [
-        80
-        443
-      ];
+      config = {
+        networkConfig = {
+          SpeedMeter = "yes";
+        };
+      };
+      links = {
+        "wlan0" = {
+          matchConfig.Name = "wlan0";
+          linkConfig.MACAddressPolicy = "random";
+        };
+      };
+      networks = {
+        "10-${hostname}" = {
+          matchConfig.Name = "wlan0";
+          networkConfig = {
+            DHCP = "yes";
+            DNS = [
+              "9.9.9.9"
+              "2620:fe::fe"
+              "149.112.112.112"
+              "2620:fe::9"
+            ];
+            IgnoreCarrierLoss = "3s";
+          };
+          linkConfig.RequiredForOnline = "routable";
+        };
+      };
     };
-    hostName = hostname;
-    nameservers = [
-      "9.9.9.9"
-      "149.112.112.112"
-    ];
-    # TODO: add example of wireguard configuration
-    wireguard.enable = true;
+  };
+
+  networking = {
+    useDHCP = false;
+    useNetworkd = true;
     wireless.iwd.enable = true;
   };
 
@@ -28,7 +54,9 @@ in
     domains = [ "~." ];
     fallbackDns = [
       "1.1.1.1"
+      "2606:4700:4700::1111"
       "1.0.0.1"
+      "2606:4700:4700::1001"
     ];
     llmnr = "false";
   };
