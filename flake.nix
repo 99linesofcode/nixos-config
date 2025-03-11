@@ -71,6 +71,7 @@
           ] ++ args.modules;
           specialArgs = {
             inherit self inputs outputs;
+          } // (args.specialArgs or { });
         };
     in
     {
@@ -81,9 +82,6 @@
       nixosConfigurations = {
         luna = NixosConfiguration {
           modules = [ ./hosts/luna ];
-          specialArgs = {
-            hostname = "luna";
-          };
         };
       };
     };

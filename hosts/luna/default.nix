@@ -38,6 +38,7 @@ in
     swap.enable = true;
 
     networking = {
+      hostname = "luna";
       static = {
         systemd-networkd.enable = true;
         wireguard.enable = true;
