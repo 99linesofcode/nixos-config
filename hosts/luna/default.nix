@@ -35,6 +35,13 @@ in
     btrfs.enable = true;
     swap.enable = true;
 
+    networking = {
+      static = {
+        systemd-networkd.enable = true;
+        wireguard.enable = true;
+      };
+    };
+
     avahi.enable = true;
     bluetooth.enable = true;
     catt.enable = true;
