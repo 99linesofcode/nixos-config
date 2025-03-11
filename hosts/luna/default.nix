@@ -35,7 +35,9 @@ in
     btrfs.enable = true;
     swap.enable = true;
 
+    avahi.enable = true;
     bluetooth.enable = true;
+    catt.enable = true;
     docker.enable = true;
     graphics.enable = true;
     hyprland.enable = true;
