@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  self,
   ...
 }:
 let
@@ -28,6 +29,7 @@ in
   };
 
   host = {
+    root = self.outPath;
     user.${username}.enable = true;
 
     efi.enable = true;

@@ -35,8 +35,8 @@
 
   outputs =
     {
-      self,
       nixpkgs,
+      self,
       sops-nix,
       ...
     }@inputs:
@@ -70,8 +70,7 @@
             (import ./users)
           ] ++ args.modules;
           specialArgs = {
-            inherit inputs outputs;
-          } // args.specialArgs;
+            inherit self inputs outputs;
         };
     in
     {
