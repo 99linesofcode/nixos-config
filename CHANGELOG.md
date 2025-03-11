@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/99linesofcode/nixos-config/compare/v0.4.0...v0.5.0) (2025-03-11)
+
+
+### Features
+
+* **wireguard:** systemd-networkd based, routing all traffic through wireguard ([1cf90c7](https://github.com/99linesofcode/nixos-config/commit/1cf90c70f99bb9b92a6c5d320016ee4f06def8a4))
+
+
+
 # [0.4.0](https://github.com/99linesofcode/nixos-config/compare/v0.3.0...v0.4.0) (2025-02-28)
 
 
