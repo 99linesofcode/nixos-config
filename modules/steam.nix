@@ -16,7 +16,7 @@ with lib;
     programs = {
       steam = {
         enable = true;
-        dedicatedServer.openFirewall = true;
+        dedicatedServer.openFirewall = false;
         localNetworkGameTransfers.openFirewall = true;
         protontricks.enable = true;
         remotePlay.openFirewall = true;
