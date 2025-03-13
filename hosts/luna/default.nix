@@ -57,6 +57,7 @@ in
     sound.enable = true;
     openssh.enable = true;
     steam.enable = true;
+    v4l2loopback.enable = true;
     wayland.enable = true;
     # yubikey.enable = true;
   };
