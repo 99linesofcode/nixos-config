@@ -1,3 +1,17 @@
+# [0.8.0](https://github.com/99linesofcode/nixos-config/compare/v0.7.0...v0.8.0) (2025-03-13)
+
+
+### Bug Fixes
+
+* **steam:** close dedicated server port ([a1d4acb](https://github.com/99linesofcode/nixos-config/commit/a1d4acb32dcc9c990b1a5eeb84d25538fa3f505d))
+
+
+### Features
+
+* **v4l2loopback:** added module and enabled it on luna ([4f53a63](https://github.com/99linesofcode/nixos-config/commit/4f53a63cbde7df09ba507aad602841d369d3f8b0))
+
+
+
 # [0.7.0](https://github.com/99linesofcode/nixos-config/compare/v0.6.1...v0.7.0) (2025-03-13)
 
 
@@ -37,21 +51,6 @@
 ### Features
 
 * **wireguard:** systemd-networkd based, routing all traffic through wireguard ([1cf90c7](https://github.com/99linesofcode/nixos-config/commit/1cf90c70f99bb9b92a6c5d320016ee4f06def8a4))
-
-
-
-# [0.4.0](https://github.com/99linesofcode/nixos-config/compare/v0.3.0...v0.4.0) (2025-02-28)
-
-
-### Bug Fixes
-
-* **bluetooth:** enable blueman service ([e857d2f](https://github.com/99linesofcode/nixos-config/commit/e857d2fee7584e14addfa7458a925f729d32508b))
-* **docker:** enable GPU acceleration in Docker ([886fb43](https://github.com/99linesofcode/nixos-config/commit/886fb43e346aea7e5b94642d855f3a1267fd83fb))
-
-
-### Features
-
-* **disko:** declarative disk partitioning and formatting ([5633cd2](https://github.com/99linesofcode/nixos-config/commit/5633cd2762bbd0780b17aa6d64a83eb6f19e9c26))
 
 
 
