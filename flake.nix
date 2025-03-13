@@ -35,8 +35,8 @@
 
   outputs =
     {
-      self,
       nixpkgs,
+      self,
       sops-nix,
       ...
     }@inputs:
@@ -70,8 +70,8 @@
             (import ./users)
           ] ++ args.modules;
           specialArgs = {
-            inherit inputs outputs;
-          } // args.specialArgs;
+            inherit self inputs outputs;
+          } // (args.specialArgs or { });
         };
     in
     {
@@ -82,9 +82,6 @@
       nixosConfigurations = {
         luna = NixosConfiguration {
           modules = [ ./hosts/luna ];
-          specialArgs = {
-            hostname = "luna";
-          };
         };
       };
     };

@@ -17,7 +17,7 @@ with lib;
   config = mkIf cfg.enable {
     sops.secrets.shorty-password = {
       format = "binary";
-      sopsFile = mkDefault ./secrets/passwd;
+      sopsFile = "${config.host.root}/users/shorty/secrets/passwd";
       neededForUsers = true;
     };
 
@@ -34,9 +34,9 @@ with lib;
         ++ ifTheyExist [
           "docker"
           "libvirtd"
+          "networkmanager"
           "openrazer"
         ];
-
       hashedPasswordFile = config.sops.secrets.shorty-password.path;
     };
 

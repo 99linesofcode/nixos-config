@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  self,
   ...
 }:
 let
@@ -28,12 +29,21 @@ in
   };
 
   host = {
+    root = self.outPath;
     user.${username}.enable = true;
 
     efi.enable = true;
     encryption.enable = true;
     btrfs.enable = true;
     swap.enable = true;
+
+    networking = {
+      hostname = "luna";
+      static = {
+        systemd-networkd.enable = true;
+        # wireguard.enable = true; # FIXME broken, still missing something here
+      };
+    };
 
     avahi.enable = true;
     bluetooth.enable = true;
