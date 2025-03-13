@@ -34,9 +34,9 @@ with lib;
         ++ ifTheyExist [
           "docker"
           "libvirtd"
+          "networkmanager"
           "openrazer"
         ];
-
       hashedPasswordFile = config.sops.secrets.shorty-password.path;
     };
 
