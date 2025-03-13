@@ -1,3 +1,17 @@
+# [0.7.0](https://github.com/99linesofcode/nixos-config/compare/v0.6.1...v0.7.0) (2025-03-13)
+
+
+### Bug Fixes
+
+* incorrect password for user shorty ([934fa39](https://github.com/99linesofcode/nixos-config/commit/934fa3902b017642e7faae584e8b6595b908404f))
+
+
+### Features
+
+* scaffolding for dynamic networking and VPN tunnels ([f25b480](https://github.com/99linesofcode/nixos-config/commit/f25b480ee79a6b626f8e689c039d60a13f94ab58))
+
+
+
 ## [0.6.1](https://github.com/99linesofcode/nixos-config/compare/v0.6.0...v0.6.1) (2025-03-11)
 
 
@@ -38,15 +52,6 @@
 ### Features
 
 * **disko:** declarative disk partitioning and formatting ([5633cd2](https://github.com/99linesofcode/nixos-config/commit/5633cd2762bbd0780b17aa6d64a83eb6f19e9c26))
-
-
-
-# [0.3.0](https://github.com/99linesofcode/nixos-config/compare/v0.2.0...v0.3.0) (2025-02-21)
-
-
-### Features
-
-* automatically login shorty on luna ([a13f83c](https://github.com/99linesofcode/nixos-config/commit/a13f83cec467b9a0caf21fadfd5ddaa7a6873113))
 
 
 
