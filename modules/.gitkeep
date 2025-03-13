@@ -1,9 +1,9 @@
-{config, lib, ...}:
+{ config, lib, ... }:
 
 let
   cfg = config.host.PLACEHOLDER;
 in
-  with lib;
+with lib;
 {
   options = {
     host.PLACEHOLDER.enable = mkEnableOption "PLACEHOLDER";
