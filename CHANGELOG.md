@@ -1,3 +1,12 @@
+## [0.8.1](https://github.com/99linesofcode/nixos-config/compare/v0.8.0...v0.8.1) (2025-03-14)
+
+
+### Bug Fixes
+
+* incorrect formatter definition ([e86ec87](https://github.com/99linesofcode/nixos-config/commit/e86ec87aa451394b1f3410d55f2b27be54ee08f5))
+
+
+
 # [0.8.0](https://github.com/99linesofcode/nixos-config/compare/v0.7.0...v0.8.0) (2025-03-13)
 
 
@@ -42,15 +51,6 @@
 
 * **avahi:** mDNS multicast service discovery ([d34b55d](https://github.com/99linesofcode/nixos-config/commit/d34b55d5665e1a996f547ccf71a7b0889774ab65))
 * **catt:** cast websites and files to chromecast devices ([0eaae8d](https://github.com/99linesofcode/nixos-config/commit/0eaae8d2e57115566b3f120e66b2e7d6f78788ae))
-
-
-
-# [0.5.0](https://github.com/99linesofcode/nixos-config/compare/v0.4.0...v0.5.0) (2025-03-11)
-
-
-### Features
-
-* **wireguard:** systemd-networkd based, routing all traffic through wireguard ([1cf90c7](https://github.com/99linesofcode/nixos-config/commit/1cf90c70f99bb9b92a6c5d320016ee4f06def8a4))
 
 
 
