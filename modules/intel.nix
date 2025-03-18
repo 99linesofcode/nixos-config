@@ -25,7 +25,11 @@ with lib;
         extraPackages = with pkgs; [
           intel-compute-runtime # OpenCL for gen8 and beyond
           intel-media-sdk # Quick Sync Video for older processors
-          intel-vaapi-driver # Accelerated Video Playback for older processors. LIBVA_DRIVER_NAME=i965
+          intel-media-driver # Accelerated Video Playback for Broadwell or newer processors. LIBVA_DRIVER_NAME=iHD
+          # intel-vaapi-driver # Accelerated Video Playback for older processors. LIBVA_DRIVER_NAME=i965
+        ];
+        extraPackages32 = with pkgs.pkgsi686Linux; [
+          intel-media-driver
         ];
       };
     };
