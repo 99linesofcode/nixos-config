@@ -4,6 +4,7 @@
   pkgs,
   ...
 }:
+
 let
   cfg = config.host.intel;
 in

@@ -1,4 +1,5 @@
 { config, lib, ... }:
+
 let
   cfg = config.host.efi;
 in
