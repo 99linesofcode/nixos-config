@@ -14,10 +14,11 @@ with lib;
       mkEnableOption "dynamic networking through networkmanager";
   };
 
+  # FIXME: appeared broken, test before enabling
   config = mkIf cfg.enable {
     # networking = {
-    #   dhcpcd.enable = false;
     #   hostName = config.host.networking.hostname;
+    #   dhcpcd.enable = false;
     #   networkmanager = {
     #     enable = true;
     #     dns = "systemd-resolved";

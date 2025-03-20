@@ -4,6 +4,7 @@
   pkgs,
   ...
 }:
+
 let
   cfg = config.host.networking.static.systemd-networkd;
 in
@@ -54,6 +55,7 @@ with lib;
     };
 
     networking = {
+      hostName = config.host.networking.hostname;
       dhcpcd.enable = false;
       useDHCP = false;
       useNetworkd = true;
