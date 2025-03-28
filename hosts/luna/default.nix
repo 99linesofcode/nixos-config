@@ -47,9 +47,10 @@ in
       hostname = "luna";
       static = {
         systemd-networkd.enable = true;
-        # wireguard.enable = true; # FIXME: broken, still missing something here
       };
     };
+
+    virtualization.enable = true;
 
     avahi.enable = true;
     bluetooth.enable = true;
