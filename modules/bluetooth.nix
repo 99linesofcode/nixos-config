@@ -20,6 +20,7 @@ with lib;
         settings = {
           General = {
             Experimental = true; # see: https://wiki.nixos.org/wiki/Bluetooth#Showing_battery_charge_of_bluetooth_devices
+            ControllerMode = "bredr";
           };
         };
       };
