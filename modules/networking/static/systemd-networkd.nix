@@ -62,6 +62,7 @@ with lib;
       useDHCP = false;
       useNetworkd = true;
       wireless.iwd.enable = true;
+      firewall.allowedUDPPorts = [ 5353 ]; # mDNS
     };
   };
 }

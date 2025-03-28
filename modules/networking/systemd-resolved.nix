@@ -5,6 +5,7 @@
     dnssec = "true";
     dnsovertls = "true";
     domains = [ "~." ];
+    extraConfig = "MulticastDNS=resolve";
     fallbackDns = [
       "1.1.1.1"
       "1.0.0.1"
