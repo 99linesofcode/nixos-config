@@ -3,6 +3,7 @@
   lib,
   ...
 }:
+
 let
   cfg = config.host.sound;
 in

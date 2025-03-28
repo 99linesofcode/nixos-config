@@ -4,6 +4,7 @@
   self,
   ...
 }:
+
 let
   username = "shorty";
 in
@@ -13,6 +14,11 @@ in
     ./disko.nix
     ./hardware-configuration.nix
     ../shared
+  ];
+
+  boot.kernelParams = [
+    "mds=full,nosmt" # see: https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html
+    "mmio_stale_data=full,nosmt" # see: https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/processor_mmio_stale_data.html
   ];
 
   environment.systemPackages = with pkgs; [
@@ -41,11 +47,11 @@ in
       hostname = "luna";
       static = {
         systemd-networkd.enable = true;
-        # wireguard.enable = true; # FIXME broken, still missing something here
       };
     };
 
-    avahi.enable = true;
+    virtualization.enable = true;
+
     bluetooth.enable = true;
     catt.enable = true;
     docker.enable = true;
@@ -55,6 +61,7 @@ in
     nvidia.enable = true;
     power-management.enable = true;
     sound.enable = true;
+
     openssh.enable = true;
     steam.enable = true;
     v4l2loopback.enable = true;

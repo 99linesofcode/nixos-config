@@ -4,6 +4,7 @@
   pkgs,
   ...
 }:
+
 let
   cfg = config.host.user.shorty;
   ifTheyExist = c: builtins.filter (group: builtins.hasAttr group config.users.groups) c;
@@ -32,7 +33,6 @@ with lib;
           "wheel"
         ]
         ++ ifTheyExist [
-          "docker"
           "libvirtd"
           "networkmanager"
           "openrazer"

@@ -20,7 +20,6 @@ with lib;
     ];
 
     networking.firewall = {
-      enable = true;
       allowedTCPPortRanges = [
         {
           from = 45000;

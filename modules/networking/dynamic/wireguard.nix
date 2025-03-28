@@ -15,6 +15,7 @@ with lib;
       mkEnableOption "dynamic wireguard tunnel through network manager";
   };
 
+  # FIXME: appeared broken, test before enabling
   config = mkIf cfg.enable {
     # sops.secrets.wireguard-private-key = {
     #   format = "binary";
