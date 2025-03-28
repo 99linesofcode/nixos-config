@@ -1,3 +1,20 @@
+# [0.9.0](https://github.com/99linesofcode/nixos-config/compare/v0.8.1...v0.9.0) (2025-03-28)
+
+
+### Bug Fixes
+
+* **networking:** device hostName was not being set correctly ([5b770a0](https://github.com/99linesofcode/nixos-config/commit/5b770a028398ac2e65177288dcb26d39122c25cf))
+
+
+### Features
+
+* **intel:** accelerated video playback with 32bit support ([e049ae4](https://github.com/99linesofcode/nixos-config/commit/e049ae4098d58861effa0d752010f8ea8d2c3bfc))
+* **security:** mitigate mmio_stale and mds vunerabilities on luna ([57d7efc](https://github.com/99linesofcode/nixos-config/commit/57d7efc75598c9f631dafdb287eacb80cb743dc9))
+* **systemd-resolved:** enable multicast DNS resolving ([09a5af5](https://github.com/99linesofcode/nixos-config/commit/09a5af5b62455926f4beb6acb9c26e0bf79a49bb))
+* **virtualization:** add module for virtualization and virt-manager ([43e215b](https://github.com/99linesofcode/nixos-config/commit/43e215bb413149aab3057ace3d4bd7fc7c5e9075))
+
+
+
 ## [0.8.1](https://github.com/99linesofcode/nixos-config/compare/v0.8.0...v0.8.1) (2025-03-14)
 
 
@@ -41,16 +58,6 @@
 ### Bug Fixes
 
 * **catt:** added missing module input ([376691f](https://github.com/99linesofcode/nixos-config/commit/376691f4698e3f7b0c82695b2cdf4daf4d52a172))
-
-
-
-# [0.6.0](https://github.com/99linesofcode/nixos-config/compare/v0.5.0...v0.6.0) (2025-03-11)
-
-
-### Features
-
-* **avahi:** mDNS multicast service discovery ([d34b55d](https://github.com/99linesofcode/nixos-config/commit/d34b55d5665e1a996f547ccf71a7b0889774ab65))
-* **catt:** cast websites and files to chromecast devices ([0eaae8d](https://github.com/99linesofcode/nixos-config/commit/0eaae8d2e57115566b3f120e66b2e7d6f78788ae))
 
 
 
