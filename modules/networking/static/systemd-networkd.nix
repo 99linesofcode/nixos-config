@@ -39,16 +39,18 @@ with lib;
           "10-${config.host.networking.hostname}" = {
             matchConfig.Name = "wlan0";
             networkConfig = {
-              DHCP = "yes";
+              DHCP = true;
               DNS = [
                 "9.9.9.9"
-                "2620:fe::fe"
                 "149.112.112.112"
+                "2620:fe::fe"
                 "2620:fe::9"
               ];
               IgnoreCarrierLoss = "3s";
             };
-            linkConfig.RequiredForOnline = "routable";
+            linkConfig = {
+              RequiredForOnline = "routable";
+            };
           };
         };
       };
