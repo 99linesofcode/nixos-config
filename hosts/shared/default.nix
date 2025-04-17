@@ -1,4 +1,5 @@
 { lib, pkgs, ... }:
+
 with lib;
 {
   imports = [
@@ -7,13 +8,6 @@ with lib;
     ./nix.nix
     ./security.nix
   ];
-
-  # QMK
-  environment.systemPackages = with pkgs; [
-    via
-  ];
-  services.udev.packages = [ pkgs.via ];
-  hardware.keyboard.qmk.enable = true;
 
   # low level key remapping daemon
   services.keyd = {

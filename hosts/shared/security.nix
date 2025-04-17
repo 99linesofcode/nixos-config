@@ -1,4 +1,5 @@
 { ... }:
+
 {
   boot.kernel.sysctl = {
     "kernel.sysrq" = 0; # disable magic sysrq key
