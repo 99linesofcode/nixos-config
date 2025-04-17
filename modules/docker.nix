@@ -30,6 +30,7 @@ with lib;
         enable = true;
         setSocketVariable = true;
       };
+      storageDriver = mkIf config.host.btrfs.enable "btrfs";
     };
   };
 }
