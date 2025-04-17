@@ -1,4 +1,5 @@
 { ... }:
+
 {
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -13,7 +14,6 @@
       LC_TELEPHONE = "en_US.UTF-8";
       LC_TIME = "en_US.UTF-8";
     };
-    # TODO: ask around to see whether I can get multi language spellchecking in Electron working somehow
     supportedLocales = [
       "en_US.UTF-8/UTF-8"
       "nl_NL.UTF-8/UTF-8"
