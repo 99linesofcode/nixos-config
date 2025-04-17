@@ -32,5 +32,14 @@ with lib;
       };
       storageDriver = mkIf config.host.btrfs.enable "btrfs";
     };
+
+    security.wrappers = {
+      docker-rootlesskit = {
+        owner = "root";
+        group = "root";
+        capabilities = "cap_net_bind_service+ep";
+        source = "${pkgs.rootlesskit}/bin/rootlesskit";
+      };
+    };
   };
 }
