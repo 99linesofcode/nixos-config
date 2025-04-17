@@ -8,9 +8,16 @@ with lib;
     ./security.nix
   ];
 
-  # swap ESC and CAPSLOCK in console and beyond
-  console.useXkbConfig = mkDefault true;
-  services.xserver.xkb.options = mkDefault "caps:swapescape";
+  # low level key remapping daemon
+  services.keyd = {
+    enable = true;
+    keyboards.default.settings = {
+      main = {
+        capslock = "escape";
+        rightalt = "capslock";
+      };
+    };
+  };
 
   services = {
     automatic-timezoned.enable = true;
