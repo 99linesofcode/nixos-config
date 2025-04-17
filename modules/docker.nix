@@ -1,11 +1,17 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
 let
   cfg = config.host.docker;
+  isNetworkd = config.host.networking.static.systemd-networkd.enable;
+  networkdDns =
+    config.systemd.network.networks."10-${config.host.networking.hostname}".networkConfig.DNS;
+  networkManagerDns = config.networking.networkmanager.dns;
+  dnsServers = if isNetworkd then networkdDns else networkManagerDns;
 in
 with lib;
 {
@@ -29,6 +35,7 @@ with lib;
       rootless = {
         enable = true;
         setSocketVariable = true;
+        daemon.settings.dns = dnsServers;
       };
       storageDriver = mkIf config.host.btrfs.enable "btrfs";
     };
