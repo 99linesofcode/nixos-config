@@ -1,3 +1,12 @@
+# [0.11.0](https://github.com/99linesofcode/nixos-config/compare/v0.10.0...v0.11.0) (2025-05-27)
+
+
+### Features
+
+* **printing:** module for printing with default Brother support ([0a94af6](https://github.com/99linesofcode/nixos-config/commit/0a94af6b4642a64db6ba4567745b8b8ba391ccf1))
+
+
+
 # [0.10.0](https://github.com/99linesofcode/nixos-config/compare/v0.9.0...v0.10.0) (2025-04-17)
 
 
@@ -55,20 +64,6 @@
 ### Features
 
 * **v4l2loopback:** added module and enabled it on luna ([4f53a63](https://github.com/99linesofcode/nixos-config/commit/4f53a63cbde7df09ba507aad602841d369d3f8b0))
-
-
-
-# [0.7.0](https://github.com/99linesofcode/nixos-config/compare/v0.6.1...v0.7.0) (2025-03-13)
-
-
-### Bug Fixes
-
-* incorrect password for user shorty ([934fa39](https://github.com/99linesofcode/nixos-config/commit/934fa3902b017642e7faae584e8b6595b908404f))
-
-
-### Features
-
-* scaffolding for dynamic networking and VPN tunnels ([f25b480](https://github.com/99linesofcode/nixos-config/commit/f25b480ee79a6b626f8e689c039d60a13f94ab58))
 
 
 
