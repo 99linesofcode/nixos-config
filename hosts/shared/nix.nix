@@ -11,6 +11,7 @@
     settings = {
       accept-flake-config = true;
       auto-optimise-store = true;
+      download-buffer-size = 524288000; # 500MB
       experimental-features = [
         "nix-command"
         "flakes"
