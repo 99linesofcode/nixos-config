@@ -1,3 +1,21 @@
+# [0.12.0](https://github.com/99linesofcode/nixos-config/compare/v0.11.0...v0.12.0) (2025-09-05)
+
+
+### Bug Fixes
+
+* **docker:** expose PHP XDebug port ([dcf4444](https://github.com/99linesofcode/nixos-config/commit/dcf4444827a5dda1fb6b5a06fe5841b889ecae40))
+* intel-media-sdk has been deprecated and won't build ([13155e3](https://github.com/99linesofcode/nixos-config/commit/13155e32d9ab4133df9a9c7367c796f2a96709d7))
+* **openssh:** disable password authentication ([9e86f28](https://github.com/99linesofcode/nixos-config/commit/9e86f284da6da40cb1b18ce5f116680708b99800))
+* setting timezone automatically by enabling geoclue demo agent ([2c94d14](https://github.com/99linesofcode/nixos-config/commit/2c94d14e3045c1d0e51a7c12af3b6dafef98a213))
+
+
+### Features
+
+* **docker:** allow enabling/disabling rootless mode ([37e6290](https://github.com/99linesofcode/nixos-config/commit/37e6290728e717366eb443e3b8af0099c8d28121))
+* **kubernetes:** k3s based kubernetes for local dev and production ([b1ee287](https://github.com/99linesofcode/nixos-config/commit/b1ee28727fc3221dfae88bc19a7ffb702845dc1b))
+
+
+
 # [0.11.0](https://github.com/99linesofcode/nixos-config/compare/v0.10.0...v0.11.0) (2025-05-27)
 
 
@@ -50,20 +68,6 @@
 ### Bug Fixes
 
 * incorrect formatter definition ([e86ec87](https://github.com/99linesofcode/nixos-config/commit/e86ec87aa451394b1f3410d55f2b27be54ee08f5))
-
-
-
-# [0.8.0](https://github.com/99linesofcode/nixos-config/compare/v0.7.0...v0.8.0) (2025-03-13)
-
-
-### Bug Fixes
-
-* **steam:** close dedicated server port ([a1d4acb](https://github.com/99linesofcode/nixos-config/commit/a1d4acb32dcc9c990b1a5eeb84d25538fa3f505d))
-
-
-### Features
-
-* **v4l2loopback:** added module and enabled it on luna ([4f53a63](https://github.com/99linesofcode/nixos-config/commit/4f53a63cbde7df09ba507aad602841d369d3f8b0))
 
 
 
