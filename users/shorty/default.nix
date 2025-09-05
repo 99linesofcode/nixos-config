@@ -33,6 +33,7 @@ with lib;
           "wheel"
         ]
         ++ ifTheyExist [
+          "docker"
           "libvirtd"
           "networkmanager"
           "openrazer"

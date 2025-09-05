@@ -1,5 +1,6 @@
 {
   inputs,
+  modulesPath,
   pkgs,
   self,
   ...
@@ -10,7 +11,7 @@ let
 in
 {
   imports = [
-    inputs.disko.nixosModules.disko
+    (modulesPath + "/installer/scan/not-detected.nix")
     ./disko.nix
     ./hardware-configuration.nix
     ../shared
@@ -55,10 +56,14 @@ in
     avahi.enable = true;
     bluetooth.enable = true;
     catt.enable = true;
-    docker.enable = true;
+    docker = {
+      enable = true;
+      rootless.enable = false;
+    };
     graphics.enable = true;
     hyprland.enable = true;
     intel.enable = true;
+    k3s.enable = true;
     nvidia.enable = true;
     power-management.enable = true;
     sound.enable = true;

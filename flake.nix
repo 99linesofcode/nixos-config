@@ -37,6 +37,7 @@
     {
       nixpkgs,
       self,
+      disko,
       sops-nix,
       ...
     }@inputs:
@@ -65,13 +66,16 @@
         args:
         nixpkgs.lib.nixosSystem {
           modules = [
+            disko.nixosModules.disko
             sops-nix.nixosModules.sops
             (import ./modules)
             (import ./users)
-          ] ++ args.modules;
+          ]
+          ++ args.modules;
           specialArgs = {
             inherit self inputs outputs;
-          } // (args.specialArgs or { });
+          }
+          // (args.specialArgs or { });
         };
     in
     {

@@ -31,7 +31,7 @@ with lib;
       };
 
       nvidia = {
-        modesetting.enable = true;
+        modesetting.enable = true; # default since 535
         nvidiaSettings = true;
         open = false;
         package = config.boot.kernelPackages.nvidiaPackages.beta;

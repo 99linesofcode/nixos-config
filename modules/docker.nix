@@ -15,32 +15,39 @@ let
 in
 with lib;
 {
-  options = {
-    host.docker.enable = mkEnableOption "docker";
+  options.host.docker = with types; {
+    enable = mkEnableOption "docker";
+    rootless.enable = mkEnableOption "rootless mode";
   };
 
   config = mkIf cfg.enable {
-    environment = {
-      #  TODO: docker should fallback to gnome-keyring by default
-      # systemPackages = with pkgs; [
-      #   docker-credential-helpers
-      # ];
-    };
-
-    hardware.nvidia-container-toolkit.enable = true;
+    hardware.nvidia-container-toolkit.enable = mkIf config.host.nvidia.enable true;
 
     virtualisation.docker = {
       enable = true;
       autoPrune.enable = true;
-      rootless = {
+      daemon.settings = mkIf (!config.host.docker.rootless.enable) {
+        dns = dnsServers;
+        log-driver = "json-file"; # fix kubernetes logging
+      };
+      rootless = mkIf config.host.docker.rootless.enable {
         enable = true;
         setSocketVariable = true;
-        daemon.settings.dns = dnsServers;
+        daemon.settings = {
+          dns = dnsServers;
+          log-driver = "json-file"; # fix kubernetes logging
+        };
       };
       storageDriver = mkIf config.host.btrfs.enable "btrfs";
     };
 
-    security.wrappers = {
+    networking = {
+      firewall.allowedTCPPorts = [
+        9003 # required so PHP XDebug can reach host machine
+      ];
+    };
+
+    security.wrappers = mkIf config.host.docker.rootless.enable {
       docker-rootlesskit = {
         owner = "root";
         group = "root";
