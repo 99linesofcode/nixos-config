@@ -21,14 +21,7 @@ with lib;
   };
 
   config = mkIf cfg.enable {
-    environment = {
-      #  TODO: docker should fallback to gnome-keyring by default
-      # systemPackages = with pkgs; [
-      #   docker-credential-helpers
-      # ];
-    };
-
-    hardware.nvidia-container-toolkit.enable = true;
+    hardware.nvidia-container-toolkit.enable = mkIf config.host.nvidia.enable true;
 
     virtualisation.docker = {
       enable = true;
