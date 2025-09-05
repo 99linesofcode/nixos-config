@@ -15,8 +15,9 @@ let
 in
 with lib;
 {
-  options = {
-    host.docker.enable = mkEnableOption "docker";
+  options.host.docker = with types; {
+    enable = mkEnableOption "docker";
+    rootless.enable = mkEnableOption "rootless mode";
   };
 
   config = mkIf cfg.enable {
@@ -32,15 +33,22 @@ with lib;
     virtualisation.docker = {
       enable = true;
       autoPrune.enable = true;
-      rootless = {
+      daemon.settings = mkIf (!config.host.docker.rootless.enable) {
+        dns = dnsServers;
+        log-driver = "json-file"; # fix kubernetes logging
+      };
+      rootless = mkIf config.host.docker.rootless.enable {
         enable = true;
         setSocketVariable = true;
-        daemon.settings.dns = dnsServers;
+        daemon.settings = {
+          dns = dnsServers;
+          log-driver = "json-file"; # fix kubernetes logging
+        };
       };
       storageDriver = mkIf config.host.btrfs.enable "btrfs";
     };
 
-    security.wrappers = {
+    security.wrappers = mkIf config.host.docker.rootless.enable {
       docker-rootlesskit = {
         owner = "root";
         group = "root";
