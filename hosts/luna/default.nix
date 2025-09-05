@@ -1,5 +1,6 @@
 {
   inputs,
+  modulesPath,
   pkgs,
   self,
   ...
@@ -10,7 +11,7 @@ let
 in
 {
   imports = [
-    inputs.disko.nixosModules.disko
+    (modulesPath + "/installer/scan/not-detected.nix")
     ./disko.nix
     ./hardware-configuration.nix
     ../shared

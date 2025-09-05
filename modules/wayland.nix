@@ -20,10 +20,6 @@ with lib;
     };
 
     security = {
-      # TODO: determine whether and how I want to use keyring when setting up yubikey support
-      # pam = {
-      #   services.gdm.enableGnomeKeyring = mkDefault true;
-      # };
       polkit.enable = mkDefault true;
     };
 
