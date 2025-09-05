@@ -41,6 +41,12 @@ with lib;
       storageDriver = mkIf config.host.btrfs.enable "btrfs";
     };
 
+    networking = {
+      firewall.allowedTCPPorts = [
+        9003 # required so PHP XDebug can reach host machine
+      ];
+    };
+
     security.wrappers = mkIf config.host.docker.rootless.enable {
       docker-rootlesskit = {
         owner = "root";
