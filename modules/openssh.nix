@@ -30,6 +30,7 @@ with lib;
       settings = {
         MaxAuthTries = mkDefault 3;
         PermitRootLogin = mkDefault "no";
+        PasswordAuthentication = mkDefault false;
       };
     };
   };
