@@ -87,6 +87,9 @@
         luna = NixosConfiguration {
           modules = [ ./hosts/luna ];
         };
+        mars = NixosConfiguration {
+          modules = [ ./hosts/mars ];
+        };
       };
     };
 }
