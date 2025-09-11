@@ -28,17 +28,20 @@ with lib;
       group = "users";
       description = "Jordy Schreuders";
       shell = pkgs.zsh;
-      extraGroups =
-        [
-          "wheel"
-        ]
-        ++ ifTheyExist [
-          "docker"
-          "libvirtd"
-          "networkmanager"
-          "openrazer"
-        ];
+      extraGroups = [
+        "wheel"
+      ]
+      ++ ifTheyExist [
+        "docker"
+        "libvirtd"
+        "networkmanager"
+        "openrazer"
+      ];
       hashedPasswordFile = config.sops.secrets.shorty-password.path;
+      # TODO: make configurable and maybe read from private repo even though these are public
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBqG66VN/cnEOLtpCb9yt8O2WIk4CvVwRdAweBdD10mG shorty@luna"
+      ];
     };
 
     programs.zsh.enable = true; # required in order to set user shell

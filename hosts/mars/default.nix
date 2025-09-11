@@ -1,5 +1,4 @@
 {
-  inputs,
   modulesPath,
   pkgs,
   self,
@@ -42,8 +41,4 @@ in
   };
 
   networking.firewall.allowedTCPPorts = [ 22 ];
-
-  users.users.shorty.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBqG66VN/cnEOLtpCb9yt8O2WIk4CvVwRdAweBdD10mG shorty@luna"
-  ];
 }
