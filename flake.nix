@@ -67,7 +67,6 @@
         nixpkgs.lib.nixosSystem {
           modules = [
             disko.nixosModules.disko
-            sops-nix.nixosModules.sops
             (import ./modules)
             (import ./users)
           ]
