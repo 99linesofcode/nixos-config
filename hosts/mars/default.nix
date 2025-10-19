@@ -1,7 +1,6 @@
 {
   modulesPath,
   pkgs,
-  self,
   ...
 }:
 
@@ -28,7 +27,6 @@ in
   };
 
   host = {
-    root = self.outPath;
     user.${username}.enable = true;
 
     docker = {

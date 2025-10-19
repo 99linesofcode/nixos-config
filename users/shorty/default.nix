@@ -44,6 +44,8 @@ with lib;
       ];
     };
 
-    programs.zsh.enable = true; # required in order to set user shell
+    programs.zsh = {
+      enable = true; # required in order to set user shell
+    };
   };
 }

@@ -9,6 +9,10 @@ with lib;
     ./security.nix
   ];
 
+  host = {
+    sops.enable = true;
+  };
+
   services = {
     # TODO: extract automatic timezoned and geolocate to module for portable devices?
     automatic-timezoned.enable = true;
@@ -25,9 +29,5 @@ with lib;
         };
       };
     };
-  };
-
-  host = {
-    sops.enable = true;
   };
 }
