@@ -13,7 +13,7 @@ with lib;
       type = types.path;
       description = "nix store path declaration";
     };
-    host.networking.hostname = mkOption {
+    host.network.hostname = mkOption {
       type = types.str;
     };
   };

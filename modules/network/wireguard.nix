@@ -6,19 +6,19 @@
 }:
 
 let
-  cfg = config.host.networking.static.wireguard;
+  cfg = config.host.network.static.wireguard;
 in
 with lib;
 {
   options = {
-    host.networking.static.wireguard.enable =
+    host.network.static.wireguard.enable =
       mkEnableOption "static wireguard tunnel using systemd-networkd";
   };
 
   config = mkIf cfg.enable {
     sops.secrets.wireguard-private-key = {
       format = "binary";
-      sopsFile = "${config.host.root}/hosts/${config.host.networking.hostname}/secrets/wireguard-private-key";
+      sopsFile = "${config.host.root}/hosts/${config.host.network.hostname}/secrets/wireguard-private-key";
       mode = "0640";
       group = "systemd-network";
     };
