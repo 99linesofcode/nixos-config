@@ -1,11 +1,13 @@
 #!/usr/bin/env sh
 
-. ./scripts/sops.sh
-. ./scripts/ssh.sh
+set -eu
 
 HOST=$(uname -n)
 USERNAME=$(id -un)
 VERBOSE=0
+
+. ./scripts/sops.sh
+. ./scripts/ssh.sh
 
 show_help() {
   cat <<EOF
@@ -16,7 +18,8 @@ Options:
   -v, --verbose   Enable verbose mode
 
 Commands:
-  install         Remotely install a new NixOS system using nixos-anywhere
+  help            Show this help message
+  deploy          Remotely install a new NixOS system using nixos-anywhere
 
 Examples:
   $0 --help
@@ -25,12 +28,12 @@ EOF
 
 while [ $# -gt 0 ]; do
   case "$1" in
+  "-v" | "--VERBOSE")
+    VERBOSE=1
+    ;;
   "-h" | "-?" | "--help")
     show_help
     exit 0
-    ;;
-  "-v" | "--VERBOSE")
-    VERBOSE=1
     ;;
   --)
     shift
@@ -64,22 +67,27 @@ nixos_install() {
 
 # ---
 
-case "$1" in
+case "${1-help}" in
+"help")
+  show_help
+  ;;
 "deploy")
   menu_install
 
   ssh_generate_host_ssh_key
 
-  sops_add_or_update_public_age_key "$(ssh-to-age <"/etc/ssh/ssh_host_ed25519_key.pub")" "host_${HOST}"
+  sops_create_or_update_public_age_key "host_${HOST}" "$(ssh-to-age <"/etc/ssh/ssh_host_ed25519_key.pub")"
 
   sops_add_host_creation_rules "hosts/${HOST}/secrets/.*"
+
+  sops_add_user_creation_rules
 
   # TODO: figure out how to add anchors and anchor content using yq instead
   sed -E -i "s/'([&\*].*)'/\1/" .sops.yaml
 
   sops_rekey
 
-  nixos_install
+  # nixos_install
 
   exit 0
   ;;
