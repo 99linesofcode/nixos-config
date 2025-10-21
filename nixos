@@ -76,14 +76,11 @@ case "${1-help}" in
 
   ssh_generate_host_ssh_key
 
-  sops_create_or_update_public_age_key "host_${HOST}" "$(ssh-to-age <"/etc/ssh/ssh_host_ed25519_key.pub")"
+  sops_create_or_update_public_age_key "host_${HOST}" "$(ssh-to-age <"${WORKDIR}/etc/ssh/ssh_host_ed25519_key.pub")"
 
   sops_add_host_creation_rules "hosts/${HOST}/secrets/.*"
 
-  sops_add_user_creation_rules
-
-  # TODO: figure out how to add anchors and anchor content using yq instead
-  sed -E -i "s/'([&\*].*)'/\1/" .sops.yaml
+  sops_add_user_creation_rules "host_${HOST}"
 
   sops_rekey
 
