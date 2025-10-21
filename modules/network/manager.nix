@@ -20,6 +20,7 @@ with lib;
 
   config = mkIf cfg.enable {
     networking = {
+      firewall.trustedInterfaces = [ "br+" ]; # trust docker bridge network inteface
       nameservers = [
         "9.9.9.9"
         "149.112.112.112"
@@ -29,7 +30,10 @@ with lib;
       resolvconf.enable = false;
       stevenblack.enable = true; # stevenblack hosts file blocklist
       useNetworkd = true;
-      wireless.iwd.enable = true;
+      wireless = {
+        interfaces = [ "wlan0" ];
+        iwd.enable = true;
+      };
     };
   };
 }
