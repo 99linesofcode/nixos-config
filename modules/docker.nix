@@ -37,9 +37,12 @@ with lib;
     };
 
     networking = {
-      firewall.allowedTCPPorts = [
-        9003 # required so PHP XDebug can reach host machine
-      ];
+      firewall = {
+        trustedInterfaces = [ "br+" ]; # see: https://github.com/NixOS/nixpkgs/issues/417641#issuecomment-2984475281
+        allowedTCPPorts = [
+          9003 # required so PHP XDebug can reach host machine
+        ];
+      };
     };
 
     security.wrappers = mkIf config.host.docker.rootless.enable {

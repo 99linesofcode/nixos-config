@@ -20,7 +20,6 @@ with lib;
 
   config = mkIf cfg.enable {
     networking = {
-      firewall.trustedInterfaces = [ "br+" ]; # trust docker bridge network inteface
       nameservers = [
         "9.9.9.9"
         "149.112.112.112"
