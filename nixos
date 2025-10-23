@@ -58,14 +58,38 @@ menu_deploy() {
   read USERNAME
 }
 
-task_generate_sops_configuration() {
+task_generate_host_sops_configuration() {
+  ssh_generate_host_ssh_key
+
   sops_create_or_update_public_age_key "host_${HOST}" "$(ssh-to-age <"${WORKDIR}/etc/ssh/ssh_host_ed25519_key.pub")"
 
-  sops_add_host_creation_rules "hosts/${HOST}/secrets/.*"
+  sops_create_or_update_creation_rules "hosts/shared/secrets/.*" "host_${HOST}"
+  sops_create_or_update_creation_rules "hosts/${HOST}/secrets/.*"
 
-  sops_add_user_creation_rules "host_${HOST}"
+  find ./users -mindepth 1 -maxdepth 1 -type d ! -name ".*" -printf '%f\n' >tmp
+  while IFS= read -r user; do
+    sops_create_or_update_creation_rules "users/${user}/secrets/.*" "host_${HOST}"
+  done <tmp
+  rm tmp
 
   sops_rekey
+}
+
+task_generate_hm_sops_configuration() {
+  file="$HOME/.config/home-manager/.sops.yaml"
+
+  sops_create_or_update_public_age_key "user_${USERNAME}" "$(ssh-to-age <"${HOME}/.ssh/id_ed25519.pub")" "$file"
+
+  sops_create_or_update_creation_rules "hosts/shared/secrets/.*" "user_${USERNAME}" "$file"
+  sops_create_or_update_creation_rules "hosts/${HOST}/secrets/.*" "user_${USERNAME}" "$file"
+
+  find "${file%/*}/hosts/${HOST}/users" -mindepth 1 -maxdepth 1 -type d ! -name ".*" -printf '%f\n' >tmp
+  while IFS= read -r user; do
+    sops_create_or_update_creation_rules "hosts/${HOST}/users/${user}/secrets/.*" "user_${user}" "$file"
+  done <tmp
+  rm tmp
+
+  sops_rekey "$file"
 }
 
 task_nixos_install() {
@@ -84,13 +108,10 @@ case "${1-help}" in
   ;;
 "deploy")
   menu_deploy
-
   ssh_generate_host_ssh_key
-
-  task_generate_sops_configuration
-
+  cmd_git task_generate_host_sops_configuration
+  cmd_git task_generate_hm_sops_configuration
   task_nixos_install
-
   exit 0
   ;;
 esac
