@@ -59,32 +59,28 @@ menu_deploy() {
 }
 
 task_generate_host_sops_configuration() {
-  ssh_generate_host_ssh_key
-
   sops_create_or_update_public_age_key "host_${HOST}" "$(ssh-to-age <"${WORKDIR}/etc/ssh/ssh_host_ed25519_key.pub")"
 
   sops_create_or_update_creation_rules "hosts/shared/secrets/.*" "host_${HOST}"
-  sops_create_or_update_creation_rules "hosts/${HOST}/secrets/.*"
-
-  find ./users -mindepth 1 -maxdepth 1 -type d ! -name ".*" -printf '%f\n' >tmp
-  while IFS= read -r user; do
-    sops_create_or_update_creation_rules "users/${user}/secrets/.*" "host_${HOST}"
-  done <tmp
-  rm tmp
+  sops_create_or_update_creation_rules "hosts/${HOST}/.*/secrets/.*"
 
   sops_rekey
 }
 
 task_generate_hm_sops_configuration() {
   file="$HOME/.config/home-manager/.sops.yaml"
+  dir="${file%/*}"
 
-  sops_create_or_update_public_age_key "user_${USERNAME}" "$(ssh-to-age <"${HOME}/.ssh/id_ed25519.pub")" "$file"
+  sops_create_or_update_public_age_key "host_${HOST}" "$(ssh-to-age <"${WORKDIR}/etc/ssh/ssh_host_ed25519_key.pub")" "$file"
 
-  sops_create_or_update_creation_rules "hosts/shared/secrets/.*" "user_${USERNAME}" "$file"
-  sops_create_or_update_creation_rules "hosts/${HOST}/secrets/.*" "user_${USERNAME}" "$file"
+  sops_create_or_update_creation_rules "hosts/shared/secrets/.*" "host_${HOST}" "$file"
+  sops_create_or_update_creation_rules "hosts/${HOST}/.*/secrets/.*" "host_${HOST}" "$file"
 
-  find "${file%/*}/hosts/${HOST}/users" -mindepth 1 -maxdepth 1 -type d ! -name ".*" -printf '%f\n' >tmp
+  find "${dir}/hosts/${HOST}/users" -mindepth 1 -maxdepth 1 -type d ! -name ".*" -printf '%f\n' >tmp
   while IFS= read -r user; do
+    sops_create_or_update_public_age_key "user_${user}" "$(ssh-to-age <"${dir}/hosts/${HOST}/users/${user}/secrets/id_ed25519.pub")" "$file"
+
+    sops_create_or_update_creation_rules "hosts/shared/secrets/.*" "user_${user}" "$file"
     sops_create_or_update_creation_rules "hosts/${HOST}/users/${user}/secrets/.*" "user_${user}" "$file"
   done <tmp
   rm tmp

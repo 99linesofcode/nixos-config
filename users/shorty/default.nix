@@ -28,14 +28,14 @@ with lib;
         format = "binary";
         sopsFile = "${config.host.root}/hosts/${hostname}/users/${username}/secrets/id_ed25519";
         owner = username;
-        path = "/home/shorty/.ssh/id_ed25519";
+        path = "/home/${username}/.ssh/id_ed25519";
         mode = "600";
       };
       "ssh/id_ed25519.pub" = {
         format = "binary";
         sopsFile = "${config.host.root}/hosts/${hostname}/users/${username}/secrets/id_ed25519.pub";
         owner = username;
-        path = "/home/shorty/.ssh/id_ed25519.pub";
+        path = "/home/${username}/.ssh/id_ed25519.pub";
         mode = "600";
       };
     };

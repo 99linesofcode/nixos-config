@@ -41,8 +41,8 @@ sops_create_or_update_creation_rules() {
 }
 
 sops_rekey() {
-  file="${1:-$PWD}"
+  file="${1:-$PWD/.sops.yaml}"
   dir=${file%/*}
 
-  find "$dir" -type f -path "*/secrets/*" -exec sops --config "$dir/.sops.yaml" updatekeys -y {} \;
+  find "$dir" -type f -path "*/secrets/*" -exec sops --config "${dir}/.sops.yaml" updatekeys -y {} \;
 }
