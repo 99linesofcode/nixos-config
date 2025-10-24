@@ -29,7 +29,7 @@ with lib;
     sops = {
       defaultSopsFile = ../.sops.yaml;
       age = {
-        generateKey = true;
+        generateKey = false;
         keyFile = "/root/.config/sops/age/keys.txt";
         sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
       };
