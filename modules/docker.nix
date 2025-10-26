@@ -7,11 +7,6 @@
 
 let
   cfg = config.host.docker;
-  isNetworkd = config.host.networking.static.systemd-networkd.enable;
-  networkdDns =
-    config.systemd.network.networks."10-${config.host.networking.hostname}".networkConfig.DNS;
-  networkManagerDns = config.networking.networkmanager.dns;
-  dnsServers = if isNetworkd then networkdDns else networkManagerDns;
 in
 with lib;
 {
@@ -27,14 +22,14 @@ with lib;
       enable = true;
       autoPrune.enable = true;
       daemon.settings = mkIf (!config.host.docker.rootless.enable) {
-        dns = dnsServers;
+        dns = config.networking.nameservers;
         log-driver = "json-file"; # fix kubernetes logging
       };
       rootless = mkIf config.host.docker.rootless.enable {
         enable = true;
         setSocketVariable = true;
         daemon.settings = {
-          dns = dnsServers;
+          dns = config.networking.nameservers;
           log-driver = "json-file"; # fix kubernetes logging
         };
       };
@@ -42,9 +37,12 @@ with lib;
     };
 
     networking = {
-      firewall.allowedTCPPorts = [
-        9003 # required so PHP XDebug can reach host machine
-      ];
+      firewall = {
+        trustedInterfaces = [ "br+" ]; # see: https://github.com/NixOS/nixpkgs/issues/417641#issuecomment-2984475281
+        allowedTCPPorts = [
+          9003 # required so PHP XDebug can reach host machine
+        ];
+      };
     };
 
     security.wrappers = mkIf config.host.docker.rootless.enable {

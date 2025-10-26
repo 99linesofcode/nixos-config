@@ -57,7 +57,7 @@ with lib;
     };
 
     networking = {
-      hostName = config.host.networking.hostname;
+      hostName = config.host.network.hostname;
       dhcpcd.enable = false;
       useDHCP = false;
       useNetworkd = true;

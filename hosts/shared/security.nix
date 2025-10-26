@@ -27,4 +27,6 @@
     #  flushes L1 data cache every time the hypervisor enters the guest.
     # virtualization.flushL1DataCache = "always";
   };
+
+  users.mutableUsers = false;
 }

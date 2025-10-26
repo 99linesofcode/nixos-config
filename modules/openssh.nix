@@ -6,6 +6,9 @@
 
 let
   cfg = config.host.openssh;
+  userDirectoryFiles = builtins.readDir (config.host.root + "/users");
+  userDirectories = lib.attrsets.filterAttrs (_name: type: type == "directory") userDirectoryFiles;
+  users = builtins.attrNames userDirectories;
 in
 with lib;
 {
@@ -28,6 +31,8 @@ with lib;
         }
       ];
       settings = {
+        AllowUsers = users;
+        KbdInteractiveAuthentication = mkDefault false;
         MaxAuthTries = mkDefault 3;
         PermitRootLogin = mkDefault "no";
         PasswordAuthentication = mkDefault false;

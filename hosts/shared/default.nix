@@ -9,7 +9,12 @@ with lib;
     ./security.nix
   ];
 
+  host = {
+    sops.enable = true;
+  };
+
   services = {
+    # TODO: extract automatic timezoned and geolocate to module for portable devices?
     automatic-timezoned.enable = true;
     geoclue2 = {
       enableDemoAgent = mkForce true; # FIXME: see https://github.com/NixOS/nixpkgs/issues/68489#issuecomment-1484030107

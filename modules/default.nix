@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, self, ... }:
 
 let
   files = lib.filesystem.listFilesRecursive ./.;
@@ -13,12 +13,13 @@ with lib;
       type = types.path;
       description = "nix store path declaration";
     };
-    host.networking.hostname = mkOption {
-      type = types.str;
-    };
   };
 
   config = {
+    host = {
+      root = self.outPath;
+    };
+
     boot = {
       initrd = {
         systemd.enable = true;

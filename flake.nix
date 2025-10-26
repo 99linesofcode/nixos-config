@@ -45,9 +45,7 @@
       inherit (self) outputs;
 
       systems = [
-        "aarch64-darwin"
         "aarch64-linux"
-        "x86_64-darwin"
         "x86_64-linux"
       ];
 
@@ -67,7 +65,6 @@
         nixpkgs.lib.nixosSystem {
           modules = [
             disko.nixosModules.disko
-            sops-nix.nixosModules.sops
             (import ./modules)
             (import ./users)
           ]
@@ -86,6 +83,9 @@
       nixosConfigurations = {
         luna = NixosConfiguration {
           modules = [ ./hosts/luna ];
+        };
+        mars = NixosConfiguration {
+          modules = [ ./hosts/mars ];
         };
       };
     };

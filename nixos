@@ -1,0 +1,113 @@
+#!/usr/bin/env sh
+
+set -eu
+
+HOST=$(uname -n)
+USERNAME=$(id -un)
+VERBOSE=0
+
+. ./scripts/git.sh
+. ./scripts/sops.sh
+. ./scripts/ssh.sh
+
+show_help() {
+  cat <<EOF
+Usage: $0 [OPTION] [ARGUMENT]
+
+Options:
+  -h, -?, --help  Show this help message
+  -v, --verbose   Enable verbose mode
+
+Commands:
+  help            Show this help message
+  deploy          Remotely install a new NixOS system using nixos-anywhere
+
+Examples:
+  $0 --help
+EOF
+}
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+  "-v" | "--VERBOSE")
+    VERBOSE=1
+    ;;
+  "-h" | "-?" | "--help")
+    show_help
+    exit 0
+    ;;
+  --)
+    shift
+    break
+    ;;
+  *) break ;;
+  esac
+  shift
+done
+
+# ---
+
+WORKDIR=$(mktemp -d)
+
+menu_deploy() {
+  echo "Enter target host IP address: "
+  read HOST_IP
+  echo "Enter hostname: "
+  read HOST
+  echo "Enter username: "
+  read USERNAME
+}
+
+task_generate_host_sops_configuration() {
+  sops_create_or_update_public_age_key "host_${HOST}" "$(ssh-to-age <"${WORKDIR}/etc/ssh/ssh_host_ed25519_key.pub")"
+
+  sops_create_or_update_creation_rules "hosts/shared/secrets/.*" "host_${HOST}"
+  sops_create_or_update_creation_rules "hosts/${HOST}/.*/secrets/.*"
+
+  sops_rekey
+}
+
+task_generate_hm_sops_configuration() {
+  file="$HOME/.config/home-manager/.sops.yaml"
+  dir="${file%/*}"
+
+  sops_create_or_update_public_age_key "host_${HOST}" "$(ssh-to-age <"${WORKDIR}/etc/ssh/ssh_host_ed25519_key.pub")" "$file"
+
+  sops_create_or_update_creation_rules "hosts/shared/secrets/.*" "host_${HOST}" "$file"
+  sops_create_or_update_creation_rules "hosts/${HOST}/.*/secrets/.*" "host_${HOST}" "$file"
+
+  find "${dir}/hosts/${HOST}/users" -mindepth 1 -maxdepth 1 -type d ! -name ".*" -printf '%f\n' >tmp
+  while IFS= read -r user; do
+    sops_create_or_update_public_age_key "user_${user}" "$(sops -d "hosts/${HOST}/users/${user}/secrets/id_ed25519.pub" | ssh-to-age)" "$file"
+
+    sops_create_or_update_creation_rules "hosts/shared/secrets/.*" "user_${user}" "$file"
+    sops_create_or_update_creation_rules "hosts/${HOST}/users/${user}/secrets/.*" "user_${user}" "$file"
+  done <tmp
+  rm tmp
+
+  sops_rekey "$file"
+}
+
+task_nixos_install() {
+  nix run github:nix-community/nixos-anywhere -- \
+    --generate-hardware-config nixos-generate-config "./hosts/${HOST}/hardware-configuration.nix" \
+    --extra-files "$WORKDIR" \
+    --flake ".#${HOST}" \
+    "root@${HOST_IP}"
+}
+
+# ---
+
+case "${1-help}" in
+"help")
+  show_help
+  ;;
+"deploy")
+  menu_deploy
+  ssh_generate_host_ssh_key
+  task_generate_host_sops_configuration
+  task_generate_hm_sops_configuration
+  task_nixos_install
+  exit 0
+  ;;
+esac

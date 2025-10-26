@@ -1,8 +1,6 @@
 {
-  inputs,
   modulesPath,
   pkgs,
-  self,
   ...
 }:
 
@@ -25,7 +23,6 @@ in
   environment.systemPackages = with pkgs; [
     busybox
     git
-    zsh
   ];
 
   hardware = {
@@ -36,7 +33,6 @@ in
   };
 
   host = {
-    root = self.outPath;
     user.${username}.enable = true;
 
     efi.enable = true;
@@ -44,16 +40,15 @@ in
     btrfs.enable = true;
     swap.enable = true;
 
-    networking = {
+    network = {
       hostname = "luna";
-      static = {
-        systemd-networkd.enable = true;
-      };
+      manager.enable = true;
+      systemd-resolved.enable = true;
     };
+
     printing.enable = true;
     virtualization.enable = true;
 
-    avahi.enable = true;
     bluetooth.enable = true;
     catt.enable = true;
     docker = {
@@ -86,6 +81,7 @@ in
     undervolt = {
       enable = true;
       coreOffset = -125;
+
       gpuOffset = -925;
     };
   };
