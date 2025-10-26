@@ -29,6 +29,10 @@ in
   host = {
     user.${username}.enable = true;
 
+    network = {
+      hostname = "mars";
+    };
+
     docker = {
       enable = true;
       rootless.enable = false;

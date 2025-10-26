@@ -30,6 +30,8 @@ sops_create_or_update_creation_rules() {
       echo "creation_rules for path_regex '${path}' were already added before. Updating."
     fi
 
+    # TODO: add or update
+
     yq -i "(.creation_rules[] | select(.path_regex == \"${path}\").key_groups[0].age) += (\"${anchor}\" | . alias |= .)" "$file"
   else
     if [ "$VERBOSE" -eq 1 ]; then
