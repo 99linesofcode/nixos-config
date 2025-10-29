@@ -61,8 +61,8 @@ in
     k3s.enable = true;
     nvidia.enable = true;
     power-management.enable = true;
+    rclone.enable = true;
     sound.enable = true;
-
     openssh.enable = true;
     qmk.enable = true;
     steam.enable = true;
