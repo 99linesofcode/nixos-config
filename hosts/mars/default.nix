@@ -19,6 +19,7 @@ in
   environment.systemPackages = with pkgs; [
     busybox
     gitMinimal
+    pass
   ];
 
   boot.loader.grub = {
