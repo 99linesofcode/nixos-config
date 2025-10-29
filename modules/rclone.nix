@@ -28,7 +28,6 @@ with lib;
       "docker-rclone/rclone.conf" = {
         format = "binary";
         sopsFile = ../hosts/shared/secrets/rclone.conf;
-        path = "/var/lib/docker-plugins/rclone/config/rclone.conf";
       };
     };
 
@@ -38,5 +37,29 @@ with lib;
           "d /var/lib/docker-plugins/rclone/config 0755 root root -"
           "d /var/lib/docker-plugins/rclone/cache  0755 root root -"
         ];
+
+    # NOTE: sops symlinks to /run/secrets and Docker doesn't follow symlinks so we need to copy the file instead
+    systemd.services = mkIf (config.host.docker.enable && dockerHasRclonePlugin) {
+      copy-docker-rclone-config = {
+        description = "Copy rclone.conf to docker-plugins directory";
+        documentation = [ "man:rclone(1)" ];
+        wants = [ "network-online.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = false;
+          ExecStart =
+            pkgs.writeShellScript "copy-docker-rclone-config" # sh
+              ''
+                #!/usr/bin/env sh
+
+                filepath="${config.sops.secrets."docker-rclone/rclone.conf".path}"
+
+                cp "$filepath" /var/lib/docker-plugins/rclone/config/rclone.conf
+                chmod 600 /var/lib/docker-plugins/rclone/config/rclone.conf
+              '';
+        };
+      };
+    };
   };
 }

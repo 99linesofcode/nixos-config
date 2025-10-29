@@ -70,7 +70,7 @@ with lib;
           Type = "oneshot";
           RemainAfterExit = false;
           ExecStart =
-            pkgs.writeShellScript "install-docker-plugins" # bash
+            pkgs.writeShellScript "install-docker-plugins" # sh
               ''
                 #!/usr/bin/env sh
 
