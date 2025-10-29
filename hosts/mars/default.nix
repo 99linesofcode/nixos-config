@@ -38,7 +38,7 @@ in
       rootless.enable = false;
     };
     k3s.enable = true;
-
     openssh.enable = true;
+    rclone.enable = true;
   };
 }
