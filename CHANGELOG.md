@@ -1,3 +1,12 @@
+# [0.14.0](https://github.com/99linesofcode/nixos-config/compare/v0.13.0...v0.14.0) (2025-10-29)
+
+
+### Features
+
+* **docker:** install and remote docker plugins declaratively ([07bdc1e](https://github.com/99linesofcode/nixos-config/commit/07bdc1e0559de839373b16e5ab77880e5e4c3b12))
+
+
+
 # [0.13.0](https://github.com/99linesofcode/nixos-config/compare/v0.12.0...v0.13.0) (2025-10-26)
 
 
@@ -71,23 +80,6 @@
 
 * **keyd:** remap keys with kernel level primitives evdev and uinput ([98f6c5a](https://github.com/99linesofcode/nixos-config/commit/98f6c5adbaf751b9324dc9f5ca378eee5c51f925))
 * **qmk:** keyboard firmware with via to remap without flashing ([6257d69](https://github.com/99linesofcode/nixos-config/commit/6257d6957a888410fcf1c632bfb426f3bb33a747))
-
-
-
-# [0.9.0](https://github.com/99linesofcode/nixos-config/compare/v0.8.1...v0.9.0) (2025-03-28)
-
-
-### Bug Fixes
-
-* **networking:** device hostName was not being set correctly ([5b770a0](https://github.com/99linesofcode/nixos-config/commit/5b770a028398ac2e65177288dcb26d39122c25cf))
-
-
-### Features
-
-* **intel:** accelerated video playback with 32bit support ([e049ae4](https://github.com/99linesofcode/nixos-config/commit/e049ae4098d58861effa0d752010f8ea8d2c3bfc))
-* **security:** mitigate mmio_stale and mds vunerabilities on luna ([57d7efc](https://github.com/99linesofcode/nixos-config/commit/57d7efc75598c9f631dafdb287eacb80cb743dc9))
-* **systemd-resolved:** enable multicast DNS resolving ([09a5af5](https://github.com/99linesofcode/nixos-config/commit/09a5af5b62455926f4beb6acb9c26e0bf79a49bb))
-* **virtualization:** add module for virtualization and virt-manager ([43e215b](https://github.com/99linesofcode/nixos-config/commit/43e215bb413149aab3057ace3d4bd7fc7c5e9075))
 
 
 
