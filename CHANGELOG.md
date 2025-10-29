@@ -1,3 +1,13 @@
+## [0.14.1](https://github.com/99linesofcode/nixos-config/compare/v0.14.0...v0.14.1) (2025-10-29)
+
+
+### Bug Fixes
+
+* **docker:** docker-credential-helpers by installing pass for secrets management ([ca7c817](https://github.com/99linesofcode/nixos-config/commit/ca7c81728547e46b667534af1f7043bb8619d0ad))
+* **rclone:** create /var/lib/docker-plugins directories if NOT in rootless mode ([55b2fd7](https://github.com/99linesofcode/nixos-config/commit/55b2fd7d93f536d3219ed0709a7145c96f12a071))
+
+
+
 # [0.14.0](https://github.com/99linesofcode/nixos-config/compare/v0.13.0...v0.14.0) (2025-10-29)
 
 
@@ -60,26 +70,6 @@
 ### Features
 
 * **printing:** module for printing with default Brother support ([0a94af6](https://github.com/99linesofcode/nixos-config/commit/0a94af6b4642a64db6ba4567745b8b8ba391ccf1))
-
-
-
-# [0.10.0](https://github.com/99linesofcode/nixos-config/compare/v0.9.0...v0.10.0) (2025-04-17)
-
-
-### Bug Fixes
-
-* **bluetooth:** keep value at startup, disable on battery power ([bf82d44](https://github.com/99linesofcode/nixos-config/commit/bf82d44d069325f96a1d47f7754242e66665f1b1))
-* **docker:** allow binding to privileged ports ([5dd0323](https://github.com/99linesofcode/nixos-config/commit/5dd0323fce9747d93231e35dcad1537b3ef6187b))
-* **docker:** not using a working DNS server so use system configured servers instead ([f642520](https://github.com/99linesofcode/nixos-config/commit/f6425203154192fc601604d647d5902542b9b9cb))
-* **docker:** point DOCKER_HOST to rootless instance by default ([97a0bf1](https://github.com/99linesofcode/nixos-config/commit/97a0bf1c3c802c5c199f303f40d61cc316c39851))
-* **docker:** use BTRFS driver if on BTRFS ([60c2c48](https://github.com/99linesofcode/nixos-config/commit/60c2c483a913b766ec143620b17e0db9a7704603))
-* **keyd:** escape should be bound to capslock ([e74e7d5](https://github.com/99linesofcode/nixos-config/commit/e74e7d5792d459738e0deec46ea886e3b473bb34))
-
-
-### Features
-
-* **keyd:** remap keys with kernel level primitives evdev and uinput ([98f6c5a](https://github.com/99linesofcode/nixos-config/commit/98f6c5adbaf751b9324dc9f5ca378eee5c51f925))
-* **qmk:** keyboard firmware with via to remap without flashing ([6257d69](https://github.com/99linesofcode/nixos-config/commit/6257d6957a888410fcf1c632bfb426f3bb33a747))
 
 
 
