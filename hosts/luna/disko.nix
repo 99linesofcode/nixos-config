@@ -48,6 +48,12 @@ in
                         "noatime"
                       ];
                     };
+                    "/root-blank" = {
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
                     "/home" = {
                       mountpoint = "/home";
                       mountOptions = [
