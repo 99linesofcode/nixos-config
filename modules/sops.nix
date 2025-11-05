@@ -15,8 +15,8 @@ with lib;
     inputs.sops-nix.nixosModules.sops
   ];
 
-  options = {
-    host.sops.enable = mkEnableOption "sops";
+  options.host.sops = {
+    enable = mkEnableOption "sops";
   };
 
   config = mkIf cfg.enable {

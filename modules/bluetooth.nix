@@ -9,8 +9,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.bluetooth.enable = mkEnableOption "bluetooth";
+  options.host.bluetooth = {
+    enable = mkEnableOption "bluetooth";
   };
 
   config = mkIf cfg.enable {

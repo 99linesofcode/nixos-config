@@ -10,8 +10,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.virtualization.enable = mkEnableOption "virtualization";
+  options.host.virtualization = {
+    enable = mkEnableOption "virtualization";
   };
 
   config = mkIf cfg.enable {

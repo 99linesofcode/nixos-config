@@ -10,8 +10,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.nvidia.enable = mkEnableOption "nvidia";
+  options.host.nvidia = {
+    enable = mkEnableOption "nvidia";
   };
 
   config = mkIf cfg.enable {

@@ -9,8 +9,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.power-management.enable = mkEnableOption "automatic power management";
+  options.host.power-management = {
+    enable = mkEnableOption "automatic power management";
   };
 
   config = mkIf cfg.enable {

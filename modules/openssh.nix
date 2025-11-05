@@ -12,8 +12,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.openssh.enable = mkEnableOption "openssh";
+  options.host.openssh = {
+    enable = mkEnableOption "openssh";
   };
 
   config = mkIf cfg.enable {

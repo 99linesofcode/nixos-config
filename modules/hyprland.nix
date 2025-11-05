@@ -9,8 +9,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.hyprland.enable = mkEnableOption "hyprland";
+  options.host.hyprland = {
+    enable = mkEnableOption "hyprland";
   };
 
   config = mkIf cfg.enable {

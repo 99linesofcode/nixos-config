@@ -5,8 +5,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.efi.enable = mkEnableOption "booting via EFI";
+  options.host.efi = {
+    enable = mkEnableOption "booting via EFI";
   };
 
   config = mkIf cfg.enable {

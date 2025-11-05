@@ -10,8 +10,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.catt.enable = mkEnableOption "Cast All The Things - Chromecast";
+  options.host.catt = {
+    enable = mkEnableOption "Cast All The Things - Chromecast";
   };
 
   config = mkIf cfg.enable {

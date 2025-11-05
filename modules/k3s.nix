@@ -10,8 +10,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.k3s.enable = mkEnableOption "k3s - lightweight Kubernetes distribution";
+  options.host.k3s = {
+    enable = mkEnableOption "k3s - lightweight Kubernetes distribution";
   };
 
   config = mkIf cfg.enable {

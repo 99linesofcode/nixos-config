@@ -10,8 +10,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.printing.enable = mkEnableOption "printing capabilities";
+  options.host.printing = {
+    enable = mkEnableOption "printing capabilities";
   };
 
   config = mkIf cfg.enable {

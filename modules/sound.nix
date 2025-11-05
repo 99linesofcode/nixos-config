@@ -9,8 +9,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.sound.enable = mkEnableOption "sound with pipewire and wireplumber";
+  options.host.sound = {
+    enable = mkEnableOption "sound with pipewire and wireplumber";
   };
 
   config = mkIf cfg.enable {

@@ -9,8 +9,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.steam.enable = mkEnableOption "steam";
+  options.host.steam = {
+    enable = mkEnableOption "steam";
   };
 
   config = mkIf cfg.enable {

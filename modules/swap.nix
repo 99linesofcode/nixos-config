@@ -5,8 +5,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.swap.enable = mkEnableOption "swap partition";
+  options.host.swap = {
+    enable = mkEnableOption "swap partition";
   };
 
   config = mkIf cfg.enable {

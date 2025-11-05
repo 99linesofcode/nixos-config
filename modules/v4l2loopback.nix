@@ -5,8 +5,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.v4l2loopback.enable = mkEnableOption "v4l2loopback virtual video devices";
+  options.host.v4l2loopback = {
+    enable = mkEnableOption "v4l2loopback virtual video devices";
   };
 
   config = mkIf cfg.enable {

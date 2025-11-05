@@ -5,8 +5,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.btrfs.enable = mkEnableOption "BTRFS partitioning";
+  options.host.btrfs = {
+    enable = mkEnableOption "BTRFS partitioning";
   };
 
   config = mkIf cfg.enable {

@@ -9,12 +9,10 @@ let
 in
 with lib;
 {
-  options = {
-    host.network = {
-      manager.enable = mkEnableOption "dynamic network manager configuration";
-      hostname = mkOption {
-        type = types.str;
-      };
+  options.host.network = {
+    manager.enable = mkEnableOption "dynamic network manager configuration";
+    hostname = mkOption {
+      type = types.str;
     };
   };
 

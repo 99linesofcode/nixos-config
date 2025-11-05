@@ -10,9 +10,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.networking.static.systemd-networkd.enable =
-      mkEnableOption "static networking using systemd-networkd";
+  options.host.networking.static.systemd-networkd = {
+    enable = mkEnableOption "static networking using systemd-networkd";
   };
 
   config = mkIf cfg.enable {

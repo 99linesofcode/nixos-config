@@ -5,8 +5,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.network.systemd-resolved.enable = mkEnableOption "systemd-resolved";
+  options.host.network.systemd-resolved = {
+    enable = mkEnableOption "systemd-resolved";
   };
 
   config = mkIf cfg.enable {

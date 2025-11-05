@@ -10,8 +10,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.wayland.enable = mkEnableOption "wayland window manager";
+  options.host.wayland = {
+    enable = mkEnableOption "wayland window manager";
   };
 
   config = mkIf cfg.enable {

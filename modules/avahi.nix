@@ -5,8 +5,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.avahi.enable = mkEnableOption "avahi";
+  options.host.avahi = {
+    enable = mkEnableOption "avahi";
   };
 
   config = mkIf cfg.enable {
