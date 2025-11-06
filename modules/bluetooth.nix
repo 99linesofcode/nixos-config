@@ -32,5 +32,9 @@ with lib;
         deps = [ ];
       };
     };
+
+    host.impermanence.directories = mkIf config.host.impermanence.enable [
+      "/var/lib/bluetooth"
+    ];
   };
 }

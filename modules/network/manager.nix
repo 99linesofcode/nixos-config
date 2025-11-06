@@ -33,5 +33,9 @@ with lib;
         iwd.enable = true;
       };
     };
+
+    host.impermanence.directories = mkIf config.host.impermanence.enable [
+      "/var/lib/iwd"
+    ];
   };
 }
