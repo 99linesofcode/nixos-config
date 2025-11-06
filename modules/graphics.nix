@@ -11,8 +11,8 @@ in
 with lib;
 {
 
-  options = {
-    host.graphics.enable = mkEnableOption "graphics";
+  options.host.graphics = {
+    enable = mkEnableOption "graphics";
   };
 
   config = mkIf cfg.enable {

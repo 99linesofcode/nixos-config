@@ -10,8 +10,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.printing.enable = mkEnableOption "printing capabilities";
+  options.host.printing = {
+    enable = mkEnableOption "printing capabilities";
   };
 
   config = mkIf cfg.enable {
@@ -23,5 +23,9 @@ with lib;
         brlaser
       ];
     };
+
+    host.impermanence.directories = mkIf config.host.impermanence.enable [
+      "/var/lib/cups"
+    ];
   };
 }

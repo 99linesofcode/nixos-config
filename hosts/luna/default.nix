@@ -23,6 +23,7 @@ in
   environment.systemPackages = with pkgs; [
     busybox
     git
+    rustdesk
   ];
 
   hardware = {
@@ -38,6 +39,7 @@ in
     efi.enable = true;
     encryption.enable = true;
     btrfs.enable = true;
+    impermanence.enable = true;
     swap.enable = true;
 
     network = {

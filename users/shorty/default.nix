@@ -13,8 +13,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.user.${username}.enable = mkEnableOption "user ${username}";
+  options.host.user.${username} = {
+    enable = mkEnableOption "user ${username}";
   };
 
   config = mkIf cfg.enable {

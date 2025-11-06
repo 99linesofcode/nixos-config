@@ -10,8 +10,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.yubikey.enable = mkEnableOption "yubikey";
+  options.host.yubikey = {
+    enable = mkEnableOption "yubikey";
   };
 
   config = mkIf cfg.enable {

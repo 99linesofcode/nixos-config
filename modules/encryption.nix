@@ -1,25 +1,30 @@
- {config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.host.encryption;
 in
-  with lib;
+with lib;
 {
-  options = {
-    host.encryption.enable = mkEnableOption "LUKS filesystem encryption";
+  options.host.encryption = {
+    enable = mkEnableOption "LUKS filesystem encryption";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages =  with pkgs; [
+    environment.systemPackages = with pkgs; [
       cryptsetup
     ];
 
-    boot.initrd =  {
+    boot.initrd = {
       luks.devices = {
-          "pool0_0" = {
-             allowDiscards = true;
-             bypassWorkqueues = true;
-          };
+        "pool0_0" = {
+          allowDiscards = true;
+          bypassWorkqueues = true;
+        };
       };
     };
   };

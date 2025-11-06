@@ -8,8 +8,8 @@ with lib;
 {
   imports = moduleFilePaths;
 
-  options = {
-    host.root = mkOption {
+  options.host = {
+    root = mkOption {
       type = types.path;
       description = "nix store path declaration";
     };

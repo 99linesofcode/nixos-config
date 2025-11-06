@@ -10,9 +10,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.network.static.wireguard.enable =
-      mkEnableOption "static wireguard tunnel using systemd-networkd";
+  options.host.network.static.wireguard = {
+    enable = mkEnableOption "static wireguard tunnel using systemd-networkd";
   };
 
   config = mkIf cfg.enable {

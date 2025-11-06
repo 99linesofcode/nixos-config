@@ -10,8 +10,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.qmk.enable = mkEnableOption "QMK";
+  options.host.qmk = {
+    enable = mkEnableOption "QMK";
   };
 
   config = mkIf cfg.enable {

@@ -9,8 +9,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.bluetooth.enable = mkEnableOption "bluetooth";
+  options.host.bluetooth = {
+    enable = mkEnableOption "bluetooth";
   };
 
   config = mkIf cfg.enable {
@@ -32,5 +32,9 @@ with lib;
         deps = [ ];
       };
     };
+
+    host.impermanence.directories = mkIf config.host.impermanence.enable [
+      "/var/lib/bluetooth"
+    ];
   };
 }

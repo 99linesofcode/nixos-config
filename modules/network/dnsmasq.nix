@@ -10,8 +10,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.network.dnsmasq.enable = mkEnableOption "dnsmasq";
+  options.host.network.dnsmasq = {
+    enable = mkEnableOption "dnsmasq";
   };
 
   config = mkIf cfg.enable {

@@ -10,8 +10,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.intel.enable = mkEnableOption "intel";
+  options.host.intel = {
+    enable = mkEnableOption "intel";
   };
 
   # see: https://wiki.nixos.org/wiki/Intel_Graphics

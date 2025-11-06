@@ -19,10 +19,7 @@
   # NOTE: nix version is manually kept in sync with home-manager
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    impermanence.url = "github:nix-community/impermanence";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,14 +28,19 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       nixpkgs,
       self,
-      disko,
       sops-nix,
+      disko,
+      impermanence,
       ...
     }@inputs:
     let
@@ -65,6 +67,7 @@
         nixpkgs.lib.nixosSystem {
           modules = [
             disko.nixosModules.disko
+            impermanence.nixosModules.impermanence
             (import ./modules)
             (import ./users)
           ]

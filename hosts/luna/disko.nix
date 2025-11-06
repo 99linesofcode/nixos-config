@@ -37,14 +37,18 @@ in
                 settings = {
                   allowDiscards = true;
                 };
-                # TODO: generate prior to nixos-anywhere install
-                # passwordFile = "/tmp/secret.key"; # commenting will cause Disko to prompt for a passphrase
                 content = {
                   type = "btrfs";
                   extraArgs = [ "-f" ];
                   subvolumes = {
                     "/root" = {
                       mountpoint = "/";
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
+                    "/root-blank" = {
                       mountOptions = [
                         "compress=zstd"
                         "noatime"

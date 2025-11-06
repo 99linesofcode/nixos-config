@@ -13,8 +13,8 @@ let
 in
 with lib;
 {
-  options = {
-    host.rclone.enable = mkEnableOption "rclone";
+  options.host.rclone = {
+    enable = mkEnableOption "rclone";
   };
 
   config = mkIf cfg.enable {

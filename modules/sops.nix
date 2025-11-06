@@ -15,8 +15,8 @@ with lib;
     inputs.sops-nix.nixosModules.sops
   ];
 
-  options = {
-    host.sops.enable = mkEnableOption "sops";
+  options.host.sops = {
+    enable = mkEnableOption "sops";
   };
 
   config = mkIf cfg.enable {
@@ -29,7 +29,11 @@ with lib;
     sops = {
       defaultSopsFile = ../.sops.yaml;
       age = {
-        sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+        sshKeyPaths =
+          if config.host.impermanence.enable then
+            [ "/persist/etc/ssh/ssh_host_ed25519_key" ]
+          else
+            [ "/etc/ssh/ssh_host_ed25519_key" ];
       };
     };
   };
