@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.host.impermanence;
@@ -25,30 +30,31 @@ with lib;
 
     boot.initrd.systemd = {
       services.rollback = {
-        description = "Rollback BTRFS root subvolume to a pristine state";
-        wantedBy = [ "initrd.target" ];
         after = [ "systemd-cryptsetup@pool0_0.service" ];
         before = [ "sysroot.mount" ];
-        unitConfig.DefaultDependencies = "no";
-        serviceConfig.Type = "oneshot";
-        script = # sh
-          ''
-            mkdir -p /mnt
-            mount -o subvol=/ /dev/mapper/pool0_0 /mnt
+        description = "Rollback BTRFS root subvolume to a pristine state";
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart =
+            pkgs.writeShellScript "btrfs-rollback" # sh
+              ''
+                mkdir -p /mnt
+                mount -o subvol=/ /dev/mapper/pool0_0 /mnt
 
-            btrfs subvolume list -o /mnt/root | cut -f9 -d ' ' | while read subvolume; do
-              echo "deleting /$subvolume subvolume..."
-              btrfs subvolume delete "/mnt/$subvolume"
-            done
+                btrfs subvolume list -o /mnt/root | cut -f9 -d ' ' | while read subvolume; do
+                  echo "deleting /$subvolume subvolume..."
+                  btrfs subvolume delete "/mnt/$subvolume"
+                done
 
-            echo "deleting /root subvolume..."
-            btrfs subvolume delete /mnt/root
+                echo "deleting /root subvolume..."
+                btrfs subvolume delete /mnt/root
 
-            echo "restoring blank /root subvolume..."
-            btrfs subvolume snapshot /mnt/root-blank /mnt/root
+                echo "restoring blank /root subvolume..."
+                btrfs subvolume snapshot /mnt/root-blank /mnt/root
 
-            umount /mnt
-          '';
+                umount /mnt
+              '';
+        };
       };
     };
   };
