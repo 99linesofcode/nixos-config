@@ -1,3 +1,20 @@
+# [0.16.0](https://github.com/99linesofcode/nixos-config/compare/v0.15.0...v0.16.0) (2026-01-12)
+
+
+### Bug Fixes
+
+* **dns:** use ipv4 DNS servers for the time being ([819208d](https://github.com/99linesofcode/nixos-config/commit/819208d09ea01a51c6ff3274629cedd05cc52e1b))
+* **impermanence:** mount /persist to resolve decryption and as a result, start-up issues ([67d69c6](https://github.com/99linesofcode/nixos-config/commit/67d69c6cedf90924825c80cb51ba623a9e734ce1))
+* import and inherit missing lib causing undefined variable error ([90f1da3](https://github.com/99linesofcode/nixos-config/commit/90f1da3ccc0151e0c84c5348d8a5da38a0368385))
+
+
+### Features
+
+* **docker:** persist docker configuration, images and volumes ([6772373](https://github.com/99linesofcode/nixos-config/commit/6772373de727f73549c32b3154ec2e1b0e0416a0))
+* **restic:** automatically backup important files to Google Drive using Rclone ([da7dca8](https://github.com/99linesofcode/nixos-config/commit/da7dca85c8572505aa0f4ec37a761f5ff01e8c31))
+
+
+
 # [0.15.0](https://github.com/99linesofcode/nixos-config/compare/v0.14.0...v0.15.0) (2025-11-06)
 
 
@@ -69,15 +86,6 @@
 
 * **docker:** allow enabling/disabling rootless mode ([37e6290](https://github.com/99linesofcode/nixos-config/commit/37e6290728e717366eb443e3b8af0099c8d28121))
 * **kubernetes:** k3s based kubernetes for local dev and production ([b1ee287](https://github.com/99linesofcode/nixos-config/commit/b1ee28727fc3221dfae88bc19a7ffb702845dc1b))
-
-
-
-# [0.11.0](https://github.com/99linesofcode/nixos-config/compare/v0.10.0...v0.11.0) (2025-05-27)
-
-
-### Features
-
-* **printing:** module for printing with default Brother support ([0a94af6](https://github.com/99linesofcode/nixos-config/commit/0a94af6b4642a64db6ba4567745b8b8ba391ccf1))
 
 
 
