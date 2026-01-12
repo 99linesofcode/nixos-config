@@ -41,5 +41,14 @@ in
     k3s.enable = true;
     openssh.enable = true;
     rclone.enable = true;
+    restic.enable = true;
+  };
+
+  services = {
+    restic.paths = [
+      "/home/shorty/.config/server01/"
+      "/home/shorty/.config/piratenportaal/"
+      "/var/lib/docker/volumes"
+    ];
   };
 }

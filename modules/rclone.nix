@@ -24,10 +24,10 @@ with lib;
     ];
 
     # TODO: encrypt to disk using rclone config encryption?
-    sops.secrets = mkIf (config.host.docker.enable && dockerHasRclonePlugin) {
-      "docker-rclone/rclone.conf" = {
+    sops.secrets = {
+      "rclone/rclone.conf" = {
         format = "binary";
-        sopsFile = ../hosts/shared/secrets/rclone.conf;
+        sopsFile = "${config.host.root}/hosts/shared/secrets/rclone.conf";
       };
     };
 
@@ -53,10 +53,11 @@ with lib;
               ''
                 #!/usr/bin/env sh
 
-                filepath="${config.sops.secrets."docker-rclone/rclone.conf".path}"
+                srcPath="${config.sops.secrets."rclone/rclone.conf".path}"
+                destPath="/var/lib/docker-plugins/rclone/config/rclone.conf"
 
-                cp "$filepath" /var/lib/docker-plugins/rclone/config/rclone.conf
-                chmod 600 /var/lib/docker-plugins/rclone/config/rclone.conf
+                cp "$srcPath" "$destPath"
+                chmod 600 "$destPath"
               '';
         };
       };
