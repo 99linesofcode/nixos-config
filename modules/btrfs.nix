@@ -33,6 +33,14 @@ with lib;
         "compress=zstd"
         "noatime"
       ];
+      "/persist" = {
+        options = [
+          "subvol=persist"
+          "compress=zstd"
+          "noatime"
+        ];
+        neededForBoot = true;
+      };
       "/var/log" = {
         options = [
           "subvol=log"

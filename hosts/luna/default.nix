@@ -1,4 +1,5 @@
 {
+  lib,
   modulesPath,
   pkgs,
   ...
@@ -7,6 +8,7 @@
 let
   username = "shorty";
 in
+with lib;
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
