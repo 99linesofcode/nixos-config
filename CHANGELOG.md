@@ -1,3 +1,12 @@
+# [0.17.0](https://github.com/99linesofcode/nixos-config/compare/v0.16.0...v0.17.0) (2026-01-12)
+
+
+### Features
+
+* **sunshine:** add module for self-hosted game stream host for Moonlight ([8a8ef56](https://github.com/99linesofcode/nixos-config/commit/8a8ef56d1e000e1cef7609c8b2bb552008f8904d))
+
+
+
 # [0.16.0](https://github.com/99linesofcode/nixos-config/compare/v0.15.0...v0.16.0) (2026-01-12)
 
 
@@ -68,24 +77,6 @@
 * **security:** disable adding new users and groups through useradd/groupadd ([ed00c04](https://github.com/99linesofcode/nixos-config/commit/ed00c045bc3c1486969cbe15b51ec1c801450867))
 * **sops:** create user SSH for initial provisioning ([acd2225](https://github.com/99linesofcode/nixos-config/commit/acd22254e7ea89a15c9a379e00ca67e22ae7747c))
 * **sops:** make sure sops and it's dependencies are installed ([2b9ebea](https://github.com/99linesofcode/nixos-config/commit/2b9ebea8b3dec9fd07fab727238a90f19698ed2c))
-
-
-
-# [0.12.0](https://github.com/99linesofcode/nixos-config/compare/v0.11.0...v0.12.0) (2025-09-05)
-
-
-### Bug Fixes
-
-* **docker:** expose PHP XDebug port ([dcf4444](https://github.com/99linesofcode/nixos-config/commit/dcf4444827a5dda1fb6b5a06fe5841b889ecae40))
-* intel-media-sdk has been deprecated and won't build ([13155e3](https://github.com/99linesofcode/nixos-config/commit/13155e32d9ab4133df9a9c7367c796f2a96709d7))
-* **openssh:** disable password authentication ([9e86f28](https://github.com/99linesofcode/nixos-config/commit/9e86f284da6da40cb1b18ce5f116680708b99800))
-* setting timezone automatically by enabling geoclue demo agent ([2c94d14](https://github.com/99linesofcode/nixos-config/commit/2c94d14e3045c1d0e51a7c12af3b6dafef98a213))
-
-
-### Features
-
-* **docker:** allow enabling/disabling rootless mode ([37e6290](https://github.com/99linesofcode/nixos-config/commit/37e6290728e717366eb443e3b8af0099c8d28121))
-* **kubernetes:** k3s based kubernetes for local dev and production ([b1ee287](https://github.com/99linesofcode/nixos-config/commit/b1ee28727fc3221dfae88bc19a7ffb702845dc1b))
 
 
 
