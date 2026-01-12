@@ -27,7 +27,6 @@ with lib;
         # TMP emulation
         qemu = {
           swtpm.enable = true;
-          ovmf.packages = [ pkgs.OVMFFull.fd ];
         };
       };
       spiceUSBRedirection.enable = true;
