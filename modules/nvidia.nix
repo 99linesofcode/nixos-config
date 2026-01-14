@@ -34,7 +34,7 @@ with lib;
         modesetting.enable = true; # default since 535
         nvidiaSettings = true;
         open = false;
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        package = mkDefault config.boot.kernelPackages.nvidiaPackages.beta;
         powerManagement = {
           enable = true;
           finegrained = true;

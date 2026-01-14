@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   modulesPath,
   pkgs,
@@ -29,6 +30,9 @@ with lib;
   ];
 
   hardware = {
+    nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.production; # NOTE: support for this GPU is dropped after driver version 580 (and there is no dedicated legacy package for it as of yet)
+    };
     openrazer = {
       enable = true;
       users = [ "${username}" ];
