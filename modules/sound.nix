@@ -28,11 +28,22 @@ with lib;
         pulse.enable = true;
         wireplumber = {
           enable = true;
-          extraConfig = {
-            "wireplumber.settings" = {
-              "device.routes.default-sink-volume" = 0.5;
-              "device.routes.default-source-volume" = 0.32;
-            };
+          extraConfig."overrides-10" = {
+            "monitor.bluez.rules" = [
+              {
+                matches = [
+                  {
+                    "device.name" = "~bluez_card.*";
+                  }
+                ];
+                actions = {
+                  update-props = {
+                    # set quality to high quality instead of the default variable bitrate ("auto")
+                    "bluez5.a2dp.ldac.quality" = "hq";
+                  };
+                };
+              }
+            ];
           };
         };
       };
