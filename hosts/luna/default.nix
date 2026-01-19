@@ -92,6 +92,22 @@ with lib;
       geoProviderUrl = "https://beacondb.net/v1/geolocate";
     };
     getty.autologinUser = "${username}"; # hardcoded because this is a single user system
+    pipewire.wireplumber.extraConfig."luna-20" = {
+      "monitor.alsa.rules" = [
+        {
+          matches = [
+            {
+              "device.name" = "alsa_input.pci-0000_00_1f.3.analog-stereo";
+            }
+          ];
+          actions = {
+            update-props = {
+              "node.volume" = 0.1;
+            };
+          };
+        }
+      ];
+    };
     udisks2.enable = true;
     undervolt = {
       enable = true;
