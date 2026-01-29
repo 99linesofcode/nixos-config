@@ -42,7 +42,7 @@ in
   networking.hostName = "mars";
 
   services = {
-    restic.paths = [
+    restic.backups.remotebackup.paths = [
       "/home/shorty/.config/server01/"
       "/home/shorty/.config/piratenportaal/"
       "/var/lib/docker/volumes"
