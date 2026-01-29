@@ -36,7 +36,6 @@ in
       enable = true;
       rootless.enable = false;
     };
-    k3s.enable = true;
     openssh.enable = true;
     rclone.enable = true;
     restic.enable = true;
