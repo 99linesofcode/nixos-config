@@ -18,7 +18,6 @@ with lib;
 
   config = mkIf cfg.enable {
     networking = {
-      hostName = config.host.network.hostname;
       nameservers = [
         "9.9.9.9"
         "149.112.112.112"

@@ -1,4 +1,9 @@
-{ lib, self, ... }:
+{
+  config,
+  lib,
+  self,
+  ...
+}:
 
 let
   files = lib.filesystem.listFilesRecursive ./.;
@@ -25,5 +30,7 @@ with lib;
         systemd.enable = true;
       };
     };
+
+    networking.hostName = config.host.network.hostname;
   };
 }

@@ -30,9 +30,7 @@ in
   host = {
     user.${username}.enable = true;
 
-    network = {
-      hostname = "mars";
-    };
+    network.hostname = "mars";
 
     docker = {
       enable = true;
