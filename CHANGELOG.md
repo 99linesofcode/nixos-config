@@ -1,3 +1,13 @@
+## [0.17.2](https://github.com/99linesofcode/nixos-config/compare/v0.17.1...v0.17.2) (2026-01-29)
+
+
+### Bug Fixes
+
+* **mars:** manually set networking.hostName as network-manager is not enabled or necessary ([473aeae](https://github.com/99linesofcode/nixos-config/commit/473aeae1f246340b4aaca4de7c29700fdbc97623))
+* **restic:** correctly define backup paths ([61d0d10](https://github.com/99linesofcode/nixos-config/commit/61d0d1024bd02ccf4a4c90e52f31121d162ebf92))
+
+
+
 ## [0.17.1](https://github.com/99linesofcode/nixos-config/compare/v0.17.0...v0.17.1) (2026-01-14)
 
 
@@ -49,15 +59,6 @@
 
 * **impermanence:** wipe root on reboot ([64e670c](https://github.com/99linesofcode/nixos-config/commit/64e670c985bc6a237da4ea55a6941009c0388bf7))
 * **rustdesk:** install rustdesk on luna ([e3fec27](https://github.com/99linesofcode/nixos-config/commit/e3fec272a3528b107ad291c4eb6d0a383f8a0236))
-
-
-
-# [0.14.0](https://github.com/99linesofcode/nixos-config/compare/v0.13.0...v0.14.0) (2025-10-29)
-
-
-### Features
-
-* **docker:** install and remote docker plugins declaratively ([07bdc1e](https://github.com/99linesofcode/nixos-config/commit/07bdc1e0559de839373b16e5ab77880e5e4c3b12))
 
 
 
