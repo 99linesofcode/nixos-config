@@ -20,6 +20,7 @@ Options:
 
 Commands:
   help            Show this help message
+  rekey           Re-encrypt secrets with (updated) .sops.yaml keys
   deploy          Remotely install a new NixOS system using nixos-anywhere
 
 Examples:
@@ -101,6 +102,11 @@ task_nixos_install() {
 case "${1-help}" in
 "help")
   show_help
+  ;;
+"rekey")
+  shift
+  sops_rekey "$@"
+  exit 0
   ;;
 "deploy")
   menu_deploy
