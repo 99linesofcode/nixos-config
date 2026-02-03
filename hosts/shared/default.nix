@@ -13,6 +13,18 @@ with lib;
     sops.enable = true;
   };
 
+  boot = {
+    initrd = {
+      systemd.enable = true;
+    };
+  };
+
+  networking.hostName = config.host.network.hostname;
+
+  programs = {
+    dconf.enable = true;
+  };
+
   services = {
     keyd = {
       enable = true;
