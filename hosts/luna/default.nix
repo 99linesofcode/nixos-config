@@ -26,7 +26,7 @@ with lib;
   environment.systemPackages = with pkgs; [
     busybox
     git
-    rustdesk
+    rustdesk-flutter
   ];
 
   hardware = {
