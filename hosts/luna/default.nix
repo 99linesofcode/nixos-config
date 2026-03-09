@@ -31,7 +31,7 @@ with lib;
 
   hardware = {
     nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.production; # NOTE: support for this GPU is dropped after driver version 580 (and there is no dedicated legacy package for it as of yet)
+      package = config.boot.kernelPackages.nvidiaPackages.production; # FIXME: support for this GPU is dropped after driver version 580 (and there is no dedicated legacy package for it as of yet)
     };
     openrazer = {
       enable = true;
@@ -71,7 +71,7 @@ with lib;
     power-management.enable = true;
     rclone.enable = true;
     sound.enable = true;
-    sunshine.enable = true;
+    # sunshine.enable = true;
     openssh.enable = true;
     qmk.enable = true;
     steam.enable = true;
