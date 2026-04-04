@@ -40,8 +40,8 @@ with lib;
           finegrained = true;
         };
         prime = {
-          intelBusId = "PCI:0:2:0";
-          nvidiaBusId = "PCI:1:0:0";
+          intelBusId = "PCI:0:2:0"; # luna
+          nvidiaBusId = "PCI:1:0:0"; # luna
           offload.enableOffloadCmd = true;
           reverseSync.enable = true;
         };

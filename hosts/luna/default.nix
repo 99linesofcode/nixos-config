@@ -32,6 +32,10 @@ with lib;
   hardware = {
     nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.production; # FIXME: support for this GPU is dropped after driver version 580 (and there is no dedicated legacy package for it as of yet)
+      prime = {
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
     };
     openrazer = {
       enable = true;
