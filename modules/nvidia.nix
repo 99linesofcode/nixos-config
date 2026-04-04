@@ -12,6 +12,8 @@ with lib;
 {
   options.host.nvidia = {
     enable = mkEnableOption "nvidia";
+    lact.enable = mkEnableOption "linux GPU control application";
+    coolercontrol.enable = mkEnableOption "powerful cooling control and monitoring for Linux";
   };
 
   config = mkIf cfg.enable {
@@ -34,7 +36,7 @@ with lib;
         modesetting.enable = true; # default since 535
         nvidiaSettings = true;
         open = false;
-        package = mkDefault config.boot.kernelPackages.nvidiaPackages.beta;
+        package = mkDefault config.boot.kernelPackages.nvidiaPackages.production;
         powerManagement = {
           enable = true;
           finegrained = true;
@@ -48,8 +50,13 @@ with lib;
       };
     };
 
-    services.xserver.videoDrivers = [
-      "nvidia"
-    ];
+    programs.coolercontrol.enable = cfg.coolercontrol.enable;
+
+    services = {
+      lact.enable = cfg.lact.enable;
+      xserver.videoDrivers = [
+        "nvidia"
+      ];
+    };
   };
 }
