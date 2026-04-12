@@ -55,7 +55,7 @@ with lib;
     network = {
       hostname = "luna";
       manager.enable = true;
-      systemd-resolved.enable = true;
+      dnsmasq.enable = true;
     };
 
     printing.enable = true;
