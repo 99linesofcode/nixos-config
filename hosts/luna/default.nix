@@ -26,12 +26,16 @@ with lib;
   environment.systemPackages = with pkgs; [
     busybox
     git
-    rustdesk
+    rustdesk-flutter
   ];
 
   hardware = {
     nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.production; # NOTE: support for this GPU is dropped after driver version 580 (and there is no dedicated legacy package for it as of yet)
+      package = mkForce config.boot.kernelPackages.nvidiaPackages.legacy_580;
+      prime = {
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
     };
     openrazer = {
       enable = true;
@@ -51,7 +55,7 @@ with lib;
     network = {
       hostname = "luna";
       manager.enable = true;
-      systemd-resolved.enable = true;
+      dnsmasq.enable = true;
     };
 
     printing.enable = true;
@@ -71,13 +75,11 @@ with lib;
     power-management.enable = true;
     rclone.enable = true;
     sound.enable = true;
-    sunshine.enable = true;
     openssh.enable = true;
     qmk.enable = true;
     steam.enable = true;
     v4l2loopback.enable = true;
     wayland.enable = true;
-    # yubikey.enable = true;
   };
 
   programs = {
@@ -92,6 +94,22 @@ with lib;
       geoProviderUrl = "https://beacondb.net/v1/geolocate";
     };
     getty.autologinUser = "${username}"; # hardcoded because this is a single user system
+    pipewire.wireplumber.extraConfig."luna-20" = {
+      "monitor.alsa.rules" = [
+        {
+          matches = [
+            {
+              "device.name" = "alsa_input.pci-0000_00_1f.3.analog-stereo";
+            }
+          ];
+          actions = {
+            update-props = {
+              "node.volume" = 0.1;
+            };
+          };
+        }
+      ];
+    };
     udisks2.enable = true;
     undervolt = {
       enable = true;

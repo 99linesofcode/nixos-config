@@ -18,7 +18,7 @@ with lib;
 
   config = mkIf cfg.enable {
     networking = {
-      nameservers = [
+      nameservers = mkDefault [
         "9.9.9.9"
         "149.112.112.112"
         "1.1.1.1"
@@ -26,9 +26,9 @@ with lib;
         "8.8.8.8"
         "8.8.4.4"
       ];
-      resolvconf.enable = false;
-      stevenblack.enable = true; # stevenblack hosts file blocklist
+      # stevenblack.enable = true; # stevenblack hosts file blocklist # FIXME: results in a corrupt /etc/hosts file that causes dnsmasq to crash
       useNetworkd = true;
+      resolvconf.enable = mkDefault false;
       wireless = {
         interfaces = [ "wlan0" ];
         iwd.enable = true;

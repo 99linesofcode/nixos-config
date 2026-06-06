@@ -16,23 +16,27 @@ with lib;
 
   config = mkIf cfg.enable {
     networking = {
-      nameservers = [ "127.0.0.1" ]; # dnsmasq
+      nameservers = mkForce [
+        "127.0.0.1"
+      ];
     };
 
     services = {
       dnsmasq = {
         enable = true;
+        alwaysKeepRunning = true;
         resolveLocalQueries = true;
         settings = {
-          address = "/test/127.0.0.1";
+          bind-interfaces = true;
           bogus-priv = true;
+          cache-size = 1000;
           conf-file = "${pkgs.dnsmasq}/share/dnsmasq/trust-anchors.conf";
           dnssec = true;
           dnssec-check-unsigned = true;
-          domain-needed = true;
-          expand-hosts = true;
-          interface = "wlan0";
-          no-resolv = true;
+          local = [
+            "/local/"
+            "/test/"
+          ];
           server = [
             "9.9.9.9"
             "149.112.112.112"
@@ -40,7 +44,13 @@ with lib;
             "1.0.0.1"
             "8.8.8.8"
             "8.8.4.4"
+          ]
+          ++ optionals config.host.avahi.enable [
+            "/local/127.0.0.1#5353" # forward mDNS queries to Avahi
           ];
+        }
+        // optionalAttrs config.host.k3s.enable {
+          address = "/.test/192.168.1.81"; # support wildcard domains for k3s
         };
       };
       resolved.enable = mkForce false;

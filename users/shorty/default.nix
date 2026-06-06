@@ -7,8 +7,8 @@
 
 let
   cfg = config.host.user.shorty;
-  username = "shorty";
   hostname = config.host.network.hostname;
+  username = "shorty";
   ifTheyExist = c: builtins.filter (group: builtins.hasAttr group config.users.groups) c;
 in
 with lib;

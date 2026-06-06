@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 with lib;
 {
@@ -11,6 +11,18 @@ with lib;
 
   host = {
     sops.enable = true;
+  };
+
+  boot = {
+    initrd = {
+      systemd.enable = true;
+    };
+  };
+
+  networking.hostName = config.host.network.hostname;
+
+  programs = {
+    dconf.enable = true;
   };
 
   services = {

@@ -38,7 +38,6 @@
     {
       nixpkgs,
       self,
-      sops-nix,
       disko,
       impermanence,
       ...

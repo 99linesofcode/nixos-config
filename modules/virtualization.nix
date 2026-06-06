@@ -16,7 +16,6 @@ with lib;
 
   config = mkIf cfg.enable {
     programs = {
-      dconf.enable = true;
       virt-manager.enable = true;
     };
 

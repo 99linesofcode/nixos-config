@@ -24,13 +24,5 @@ with lib;
     host = {
       root = self.outPath;
     };
-
-    boot = {
-      initrd = {
-        systemd.enable = true;
-      };
-    };
-
-    networking.hostName = config.host.network.hostname;
   };
 }

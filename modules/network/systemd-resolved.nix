@@ -10,23 +10,22 @@ with lib;
   };
 
   config = mkIf cfg.enable {
+    networking.resolvconf.enable = mkForce false;
+
     services.resolved = {
       enable = true;
-      dnssec = "true";
-      dnsovertls = "true";
-      domains = [ "~." ];
-      extraConfig = mkIf config.host.printing.enable "MulticastDNS=resolve";
-      fallbackDns = [
-        "1.1.1.1"
-        "1.0.0.1"
-        "2606:4700:4700::1111"
-        "2606:4700:4700::1001"
-        "1.1.1.1"
-        "1.0.0.1"
-        "2606:4700:4700::1111"
-        "2606:4700:4700::1001"
-      ];
-      llmnr = "false";
+      settings.Resolve = {
+        DNSSEC = true;
+        DNSOverTLS = true;
+        FallbackDNS = [
+          "8.8.8.8"
+          "8.8.4.4"
+          "1.1.1.1"
+        ];
+        LLMNR = "false";
+        Domains = [ "~." ];
+        MulticastDNS = mkIf config.host.printing.enable "resolve";
+      };
     };
   };
 }
