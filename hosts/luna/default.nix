@@ -31,7 +31,7 @@ with lib;
 
   hardware = {
     nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.production; # FIXME: support for this GPU is dropped after driver version 580 (and there is no dedicated legacy package for it as of yet)
+      package = mkForce config.boot.kernelPackages.nvidiaPackages.legacy_580;
       prime = {
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
@@ -75,13 +75,11 @@ with lib;
     power-management.enable = true;
     rclone.enable = true;
     sound.enable = true;
-    # sunshine.enable = true;
     openssh.enable = true;
     qmk.enable = true;
     steam.enable = true;
     v4l2loopback.enable = true;
     wayland.enable = true;
-    # yubikey.enable = true;
   };
 
   programs = {

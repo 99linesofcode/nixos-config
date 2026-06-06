@@ -26,7 +26,7 @@ with lib;
         "8.8.8.8"
         "8.8.4.4"
       ];
-      stevenblack.enable = true; # stevenblack hosts file blocklist
+      # stevenblack.enable = true; # stevenblack hosts file blocklist # FIXME: results in a corrupt /etc/hosts file that causes dnsmasq to crash
       useNetworkd = true;
       resolvconf.enable = mkDefault false;
       wireless = {
