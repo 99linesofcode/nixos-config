@@ -49,7 +49,11 @@ with lib;
 
     networking = {
       firewall = {
-        trustedInterfaces = [ "br+" ]; # see: https://github.com/NixOS/nixpkgs/issues/417641#issuecomment-2984475281
+        # see: https://github.com/NixOS/nixpkgs/issues/417641#issuecomment-2984475281
+        trustedInterfaces = [
+          "docker0"
+          "br+"
+        ];
         allowedTCPPorts = [
           9003 # required so PHP XDebug can reach host machine
         ];
