@@ -36,17 +36,13 @@ with lib;
     virtualisation.docker = {
       enable = true;
       autoPrune.enable = true;
-      daemon.settings = mkIf (!config.host.docker.rootless.enable) {
-        dns = config.networking.nameservers;
+      daemon.settings = {
+        dns = config.host.network.nameservers;
         log-driver = "json-file"; # fix kubernetes logging
       };
       rootless = mkIf config.host.docker.rootless.enable {
         enable = true;
         setSocketVariable = true;
-        daemon.settings = {
-          dns = config.networking.nameservers;
-          log-driver = "json-file"; # fix kubernetes logging
-        };
       };
       storageDriver = mkIf config.host.btrfs.enable "btrfs";
     };

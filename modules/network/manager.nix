@@ -9,23 +9,16 @@ let
 in
 with lib;
 {
-  options.host.network = {
+  options.host.network = with types; {
     manager.enable = mkEnableOption "dynamic network manager configuration";
     hostname = mkOption {
-      type = types.str;
+      type = str;
     };
   };
 
   config = mkIf cfg.enable {
     networking = {
-      nameservers = mkDefault [
-        "9.9.9.9"
-        "149.112.112.112"
-        "1.1.1.1"
-        "1.0.0.1"
-        "8.8.8.8"
-        "8.8.4.4"
-      ];
+      nameservers = mkDefault config.host.network.nameservers;
       # stevenblack.enable = true; # stevenblack hosts file blocklist # FIXME: results in a corrupt /etc/hosts file that causes dnsmasq to crash
       useNetworkd = true;
       resolvconf.enable = mkDefault false;

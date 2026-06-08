@@ -17,11 +17,7 @@ with lib;
       settings.Resolve = {
         DNSSEC = true;
         DNSOverTLS = true;
-        FallbackDNS = [
-          "8.8.8.8"
-          "8.8.4.4"
-          "1.1.1.1"
-        ];
+        FallbackDNS = config.host.network.nameservers;
         LLMNR = "false";
         Domains = [ "~." ];
         MulticastDNS = mkIf config.host.printing.enable "resolve";
