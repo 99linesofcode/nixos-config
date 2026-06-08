@@ -17,7 +17,7 @@ with lib;
   config = mkIf cfg.enable {
     networking = {
       nameservers = mkForce [
-        "127.0.0.1"
+        "::1"
       ];
     };
 
