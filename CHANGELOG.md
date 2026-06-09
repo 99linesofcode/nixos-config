@@ -1,3 +1,12 @@
+## [0.18.1](https://github.com/99linesofcode/nixos-config/compare/v0.18.0...v0.18.1) (2026-06-09)
+
+
+### Bug Fixes
+
+* **github:** update automatic updates workflow ([7d0ab79](https://github.com/99linesofcode/nixos-config/commit/7d0ab7958368ffd77935fa0bbc45868236902a88))
+
+
+
 # [0.18.0](https://github.com/99linesofcode/nixos-config/compare/v0.17.1...v0.18.0) (2026-06-06)
 
 
@@ -55,24 +64,6 @@
 
 * **docker:** persist docker configuration, images and volumes ([6772373](https://github.com/99linesofcode/nixos-config/commit/6772373de727f73549c32b3154ec2e1b0e0416a0))
 * **restic:** automatically backup important files to Google Drive using Rclone ([da7dca8](https://github.com/99linesofcode/nixos-config/commit/da7dca85c8572505aa0f4ec37a761f5ff01e8c31))
-
-
-
-# [0.15.0](https://github.com/99linesofcode/nixos-config/compare/v0.14.0...v0.15.0) (2025-11-06)
-
-
-### Bug Fixes
-
-* **docker-clone:** couldn't follow symlinks so copied secrets to /var/lib/docker-plugins/rclone dir instead ([d884eb2](https://github.com/99linesofcode/nixos-config/commit/d884eb2a97859ee8367825e1c78b2967a1581332))
-* **docker:** docker-credential-helpers by installing pass for secrets management ([ca7c817](https://github.com/99linesofcode/nixos-config/commit/ca7c81728547e46b667534af1f7043bb8619d0ad))
-* **rclone:** create /var/lib/docker-plugins directories if NOT in rootless mode ([55b2fd7](https://github.com/99linesofcode/nixos-config/commit/55b2fd7d93f536d3219ed0709a7145c96f12a071))
-* **timezone:** only enable automatic timezoned on luna.shorty for now ([e80bc37](https://github.com/99linesofcode/nixos-config/commit/e80bc3738fc3c3d76446b0ae6204eddf6695a9b1))
-
-
-### Features
-
-* **impermanence:** wipe root on reboot ([64e670c](https://github.com/99linesofcode/nixos-config/commit/64e670c985bc6a237da4ea55a6941009c0388bf7))
-* **rustdesk:** install rustdesk on luna ([e3fec27](https://github.com/99linesofcode/nixos-config/commit/e3fec272a3528b107ad291c4eb6d0a383f8a0236))
 
 
 
