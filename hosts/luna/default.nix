@@ -70,7 +70,7 @@ with lib;
     graphics.enable = true;
     hyprland.enable = true;
     intel.enable = true;
-    # k3s.enable = true;
+    k3s.enable = true;
     nvidia.enable = true;
     power-management.enable = true;
     rclone.enable = true;
