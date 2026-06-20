@@ -16,6 +16,7 @@ with lib;
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      go-task # task runner alternative to Make
       kubernetes-helm
     ];
 
@@ -31,7 +32,7 @@ with lib;
       enable = true;
       extraFlags = [
         "--disable=traefik"
-        "--disable=servicelb"
+        # "--disable=servicelb" # TODO: disable later on when we switch to MetalLB
         "--docker"
         "--write-kubeconfig-mode=0644"
       ];
