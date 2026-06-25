@@ -49,7 +49,6 @@ with lib;
     efi.enable = true;
     btrfs.enable = true;
     impermanence.enable = true;
-    swap.enable = true;
 
     network = {
       hostname = "luna";
