@@ -47,7 +47,6 @@ with lib;
     user.${username}.enable = true;
 
     efi.enable = true;
-    encryption.enable = true;
     btrfs.enable = true;
     impermanence.enable = true;
     swap.enable = true;

@@ -36,6 +36,7 @@ in
                 name = "pool0_0";
                 settings = {
                   allowDiscards = true;
+                  bypassWorkqueues = true;
                 };
                 content = {
                   type = "btrfs";
