@@ -91,7 +91,16 @@ with lib;
       enableDemoAgent = mkForce true; # FIXME: see https://github.com/NixOS/nixpkgs/issues/68489#issuecomment-1484030107
       geoProviderUrl = "https://beacondb.net/v1/geolocate";
     };
-    getty.autologinUser = "${username}"; # hardcoded because this is a single user system
+    greetd = {
+      enable = true;
+      settings = rec {
+        initial_session = {
+          command = "${pkgs.uwsm}/bin/uwsm start hyprland-uwsm.desktop";
+          user = "${username}";
+        };
+        default_session = initial_session;
+      };
+    };
     pipewire.wireplumber.extraConfig."luna-20" = {
       "monitor.alsa.rules" = [
         {
