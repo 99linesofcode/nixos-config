@@ -22,6 +22,7 @@ with lib;
     environment.persistence."/persist" = {
       directories = [
         "/root"
+        "/var/log/journal"
         "/var/lib/nixos"
       ]
       ++ config.host.impermanence.directories;
