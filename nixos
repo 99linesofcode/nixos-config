@@ -81,8 +81,8 @@ task_generate_hm_sops_configuration() {
     while IFS= read -r user; do
         sops_create_or_update_public_age_key "user_${user}" "$(sops -d "hosts/${HOST}/users/${user}/secrets/id_ed25519.pub" | ssh-to-age)" "$file"
 
-        sops_create_or_update_creation_rules "hosts/shared/secrets/.*" "user_${user}" "$file"
         sops_create_or_update_creation_rules "hosts/${HOST}/users/${user}/secrets/.*" "user_${user}" "$file"
+        sops_create_or_update_creation_rules "hosts/shared/secrets/.*" "user_${user}" "$file"
     done <tmp
     rm tmp
 
