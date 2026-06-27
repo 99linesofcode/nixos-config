@@ -43,13 +43,11 @@ with lib;
       copy-docker-rclone-config = {
         description = "Copy rclone.conf to docker-plugins directory";
         documentation = [ "man:rclone(1)" ];
-        wants = [ "network-online.target" ];
-        wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = false;
           ExecStart =
-            pkgs.writeShellScript "copy-docker-rclone-config" # sh
+            pkgs.writeShellScriptBin "copy-docker-rclone-config" # sh
               ''
                 #!/usr/bin/env sh
 
