@@ -36,6 +36,7 @@ with lib;
         "--docker"
         "--write-kubeconfig-mode=0644"
       ];
+      nodeExternalIP = "10.0.0.1";
       role = "server";
       # autoDeployCharts = {
       #   traefik = {
@@ -57,6 +58,12 @@ with lib;
     networking = {
       firewall.allowedTCPPorts = [
         6443 # required so pods can reach API server
+      ];
+      interfaces.lo.ipv4.addresses = [
+        {
+          address = "10.0.0.1";
+          prefixLength = 32;
+        }
       ];
     };
   };
