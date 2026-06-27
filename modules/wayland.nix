@@ -16,7 +16,8 @@ with lib;
 
   config = mkIf cfg.enable {
     environment.sessionVariables = {
-      NIXOS_OZONE_WL = "1";
+      GTK_USE_PORTAL = 1;
+      NIXOS_OZONE_WL = 1;
     };
 
     security = {
@@ -25,8 +26,10 @@ with lib;
 
     xdg.portal = {
       enable = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-gtk
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-hyprland
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-termfilechooser
       ];
       xdgOpenUsePortal = true;
     };
