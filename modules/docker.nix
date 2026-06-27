@@ -64,13 +64,12 @@ with lib;
       install-docker-plugins = {
         description = "Install Docker plugins";
         documentation = [ "man:rclone(1)" ];
-        wants = [ "network-online.target" ];
-        wantedBy = [ "multi-user.target" ];
+        wants = [ "docker.service" ];
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = false;
           ExecStart =
-            pkgs.writeShellScript "install-docker-plugins" # sh
+            pkgs.writeShellScriptBin "install-docker-plugins" # sh
               ''
                 #!/usr/bin/env sh
 
