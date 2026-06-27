@@ -15,17 +15,23 @@ with lib;
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      go-task # task runner alternative to Make
-      kubernetes-helm
-    ];
+    environment = {
+      systemPackages = with pkgs; [
+        go-task # task runner alternative to Make
+        kubernetes-helm
+      ];
 
-    environment.etc."kube/config" = {
-      source = "/var/lib/rancher/k3s/server/cred/admin.kubeconfig";
-      target = "/home/shorty/.kube/config";
-      mode = "0600";
-      user = "shorty";
-      group = "users";
+      etc."kube/config" = {
+        source = "/var/lib/rancher/k3s/server/cred/admin.kubeconfig";
+        target = "/home/shorty/.kube/config";
+        mode = "0600";
+        user = "shorty";
+        group = "users";
+      };
+
+      variables = {
+        KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
+      };
     };
 
     services.k3s = {
