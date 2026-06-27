@@ -44,7 +44,7 @@ with lib;
             ];
         }
         // optionalAttrs config.host.k3s.enable {
-          address = "/.test/192.168.1.81"; # support wildcard domains for k3s
+          address = "/.test/10.0.0.1"; # support wildcard domains for k3s
         };
       };
       resolved.enable = mkForce false;
