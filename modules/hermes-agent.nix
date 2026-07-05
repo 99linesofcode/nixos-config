@@ -30,5 +30,9 @@ with lib;
         model.default = "z-ai/glm-5.2";
       };
     };
+
+    host.impermanence.directories = mkIf config.host.impermanence.enable [
+      "/var/lib/hermes"
+    ];
   };
 }
