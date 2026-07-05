@@ -10,11 +10,29 @@ let
 in
 with lib;
 {
-  options.host.impermanence = {
+  options.host.impermanence = with types; {
     enable = mkEnableOption "impermanence";
-    directories = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      description = "folders that should be stored in /persist";
+    directories = mkOption {
+      type = listOf (oneOf [
+        str
+        (submodule {
+          options = {
+            directory = mkOption {
+              type = str;
+            };
+            user = mkOption {
+              type = str;
+            };
+            group = mkOption {
+              type = str;
+            };
+            mode = mkOption {
+              type = str;
+            };
+          };
+        })
+      ]);
+      description = "Either a list or submodule of files and folders to /persist";
     };
   };
 
@@ -27,36 +45,6 @@ with lib;
       ]
       ++ config.host.impermanence.directories;
       hideMounts = true;
-    };
-
-    boot.initrd.systemd = {
-      services.rollback = {
-        after = [ "systemd-cryptsetup@pool0_0.service" ];
-        before = [ "sysroot.mount" ];
-        description = "Rollback BTRFS root subvolume to a pristine state";
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart =
-            pkgs.writeShellScript "btrfs-rollback" # sh
-              ''
-                mkdir -p /mnt
-                mount -o subvol=/ /dev/mapper/pool0_0 /mnt
-
-                btrfs subvolume list -o /mnt/root | cut -f9 -d ' ' | while read subvolume; do
-                  echo "deleting /$subvolume subvolume..."
-                  btrfs subvolume delete "/mnt/$subvolume"
-                done
-
-                echo "deleting /root subvolume..."
-                btrfs subvolume delete /mnt/root
-
-                echo "restoring blank /root subvolume..."
-                btrfs subvolume snapshot /mnt/root-blank /mnt/root
-
-                umount /mnt
-              '';
-        };
-      };
     };
   };
 }
