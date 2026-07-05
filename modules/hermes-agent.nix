@@ -32,7 +32,12 @@ with lib;
     };
 
     host.impermanence.directories = mkIf config.host.impermanence.enable [
-      "/var/lib/hermes"
+      {
+        directory = "/var/lib/hermes";
+        user = "hermes";
+        group = "users";
+        mode = "u=rwx,g=rx,o=";
+      }
     ];
   };
 }
