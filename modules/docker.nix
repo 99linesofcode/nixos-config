@@ -36,24 +36,24 @@ with lib;
     virtualisation.docker = {
       enable = true;
       autoPrune.enable = true;
-      daemon.settings = mkIf (!config.host.docker.rootless.enable) {
-        dns = config.networking.nameservers;
+      daemon.settings = {
+        dns = config.host.network.nameservers;
         log-driver = "json-file"; # fix kubernetes logging
       };
       rootless = mkIf config.host.docker.rootless.enable {
         enable = true;
         setSocketVariable = true;
-        daemon.settings = {
-          dns = config.networking.nameservers;
-          log-driver = "json-file"; # fix kubernetes logging
-        };
       };
       storageDriver = mkIf config.host.btrfs.enable "btrfs";
     };
 
     networking = {
       firewall = {
-        trustedInterfaces = [ "br+" ]; # see: https://github.com/NixOS/nixpkgs/issues/417641#issuecomment-2984475281
+        # see: https://github.com/NixOS/nixpkgs/issues/417641#issuecomment-2984475281
+        trustedInterfaces = [
+          "docker0"
+          "br+"
+        ];
         allowedTCPPorts = [
           9003 # required so PHP XDebug can reach host machine
         ];
@@ -64,13 +64,12 @@ with lib;
       install-docker-plugins = {
         description = "Install Docker plugins";
         documentation = [ "man:rclone(1)" ];
-        wants = [ "network-online.target" ];
-        wantedBy = [ "multi-user.target" ];
+        wants = [ "docker.service" ];
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = false;
           ExecStart =
-            pkgs.writeShellScript "install-docker-plugins" # sh
+            pkgs.writeShellScriptBin "install-docker-plugins" # sh
               ''
                 #!/usr/bin/env sh
 

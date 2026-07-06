@@ -17,7 +17,7 @@ with lib;
   config = mkIf cfg.enable {
     networking = {
       nameservers = mkForce [
-        "127.0.0.1"
+        "::1"
       ];
     };
 
@@ -37,20 +37,14 @@ with lib;
             "/local/"
             "/test/"
           ];
-          server = [
-            "9.9.9.9"
-            "149.112.112.112"
-            "1.1.1.1"
-            "1.0.0.1"
-            "8.8.8.8"
-            "8.8.4.4"
-          ]
-          ++ optionals config.host.avahi.enable [
-            "/local/127.0.0.1#5353" # forward mDNS queries to Avahi
-          ];
+          server =
+            config.host.network.nameservers
+            ++ optionals config.host.avahi.enable [
+              "/local/127.0.0.1#5353" # forward mDNS queries to Avahi
+            ];
         }
         // optionalAttrs config.host.k3s.enable {
-          address = "/.test/192.168.1.81"; # support wildcard domains for k3s
+          address = "/.test/10.0.0.1"; # support wildcard domains for k3s
         };
       };
       resolved.enable = mkForce false;

@@ -18,25 +18,32 @@ with lib;
   };
 
   config = mkIf cfg.enable {
-    sops.secrets = {
-      shorty-password = {
-        format = "binary";
-        sopsFile = "${config.host.root}/hosts/${hostname}/users/${username}/secrets/passwd";
-        neededForUsers = true;
-      };
-      "ssh/id_ed25519" = {
-        format = "binary";
-        sopsFile = "${config.host.root}/hosts/${hostname}/users/${username}/secrets/id_ed25519";
-        owner = username;
-        path = "/home/${username}/.ssh/id_ed25519";
-        mode = "600";
-      };
-      "ssh/id_ed25519.pub" = {
-        format = "binary";
-        sopsFile = "${config.host.root}/hosts/${hostname}/users/${username}/secrets/id_ed25519.pub";
-        owner = username;
-        path = "/home/${username}/.ssh/id_ed25519.pub";
-        mode = "600";
+    sops = {
+      defaultSopsFile = "${config.host.root}/hosts/${hostname}/users/${username}/secrets/secrets.yaml";
+
+      secrets = {
+        shorty-password = {
+          format = "binary";
+          sopsFile = "${config.host.root}/hosts/${hostname}/users/${username}/secrets/passwd";
+          neededForUsers = true;
+        };
+        "ssh/id_ed25519" = {
+          format = "binary";
+          sopsFile = "${config.host.root}/hosts/${hostname}/users/${username}/secrets/id_ed25519";
+          owner = username;
+          path = "/home/${username}/.ssh/id_ed25519";
+          mode = "600";
+        };
+        "ssh/id_ed25519.pub" = {
+          format = "binary";
+          sopsFile = "${config.host.root}/hosts/${hostname}/users/${username}/secrets/id_ed25519.pub";
+          owner = username;
+          path = "/home/${username}/.ssh/id_ed25519.pub";
+          mode = "600";
+        };
+        "hermes-env" = {
+          format = "yaml";
+        };
       };
     };
 
@@ -47,6 +54,7 @@ with lib;
       description = "Jordy Schreuders";
       shell = pkgs.zsh;
       extraGroups = [
+        "input"
         "wheel"
       ]
       ++ ifTheyExist [

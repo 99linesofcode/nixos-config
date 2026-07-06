@@ -15,26 +15,34 @@ with lib;
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      kubernetes-helm
-    ];
+    environment = {
+      systemPackages = with pkgs; [
+        go-task # task runner alternative to Make
+        kubernetes-helm
+      ];
 
-    environment.etc."kube/config" = {
-      source = "/var/lib/rancher/k3s/server/cred/admin.kubeconfig";
-      target = "/home/shorty/.kube/config";
-      mode = "0600";
-      user = "shorty";
-      group = "users";
+      etc."kube/config" = {
+        source = "/var/lib/rancher/k3s/server/cred/admin.kubeconfig";
+        target = "/home/shorty/.kube/config";
+        mode = "0600";
+        user = "shorty";
+        group = "users";
+      };
+
+      variables = {
+        KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
+      };
     };
 
     services.k3s = {
       enable = true;
       extraFlags = [
         "--disable=traefik"
-        "--disable=servicelb"
+        # "--disable=servicelb" # TODO: disable later on when we switch to MetalLB
         "--docker"
         "--write-kubeconfig-mode=0644"
       ];
+      nodeExternalIP = "10.0.0.1";
       role = "server";
       # autoDeployCharts = {
       #   traefik = {
@@ -56,6 +64,12 @@ with lib;
     networking = {
       firewall.allowedTCPPorts = [
         6443 # required so pods can reach API server
+      ];
+      interfaces.lo.ipv4.addresses = [
+        {
+          address = "10.0.0.1";
+          prefixLength = 32;
+        }
       ];
     };
   };
