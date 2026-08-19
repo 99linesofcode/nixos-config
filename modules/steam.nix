@@ -37,6 +37,9 @@ with lib;
             ];
         };
         dedicatedServer.openFirewall = false;
+        extraCompatPackages = with pkgs; [
+          proton-ge-bin
+        ];
         localNetworkGameTransfers.openFirewall = true;
         protontricks.enable = true;
         remotePlay.openFirewall = true;
