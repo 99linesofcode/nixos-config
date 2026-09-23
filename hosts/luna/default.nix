@@ -72,6 +72,14 @@ with lib;
     nvidia.enable = true;
     power-management.enable = true;
     rclone.enable = true;
+    restic = {
+      enable = true;
+      repository = "rclone:gdrive:Restic/luna";
+      paths = [
+        "/home/shorty/.config"
+        "/home/shorty/Documents/Obsidian"
+      ];
+    };
     sound.enable = true;
     openssh.enable = true;
     qmk.enable = true;
