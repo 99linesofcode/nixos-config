@@ -1,11 +1,12 @@
-{ ... }:
+{ lib, ... }:
 
+with lib;
 {
   nix = {
     gc = {
       automatic = true;
-      dates = "19:00";
-      persistent = true;
+      dates = mkDefault "weekly";
+      persistent = mkDefault true;
       options = "--delete-older-than 14d";
     };
     settings = {
