@@ -40,7 +40,7 @@ with lib;
           server =
             config.host.network.nameservers
             ++ optionals config.host.avahi.enable [
-              "/local/127.0.0.1#5353" # forward mDNS queries to Avahi
+              "/.local/127.0.0.1#5353" # forward mDNS queries to Avahi
             ];
         }
         // optionalAttrs config.host.k3s.enable {
