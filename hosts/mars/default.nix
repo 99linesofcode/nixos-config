@@ -36,6 +36,12 @@ in
       enable = true;
       rootless.enable = false;
     };
+    k3s = {
+      enable = true;
+      nodeExternalIP = null;
+      loopbackAddress = null;
+      docker = false;
+    };
     openssh.enable = true;
     rclone.enable = true;
     restic = {
