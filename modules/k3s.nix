@@ -92,6 +92,8 @@ with lib;
 
     networking = {
       firewall.allowedTCPPorts = [
+        80
+        443
         6443 # required so pods can reach API server
       ];
       interfaces.lo.ipv4.addresses = optional (cfg.loopbackAddress != null) {
@@ -99,5 +101,7 @@ with lib;
         prefixLength = 32;
       };
     };
+
+    boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 80;
   };
 }
