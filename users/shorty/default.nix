@@ -18,6 +18,11 @@ with lib;
   };
 
   config = mkIf cfg.enable {
+    host.logrotate = {
+      enable = true;
+      user = username;
+    };
+
     sops.secrets = {
       shorty-password = {
         format = "binary";
