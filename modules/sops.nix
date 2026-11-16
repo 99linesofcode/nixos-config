@@ -27,7 +27,6 @@ with lib;
     ];
 
     sops = {
-      defaultSopsFile = ../.sops.yaml;
       age = {
         sshKeyPaths =
           if config.host.impermanence.enable then

@@ -18,7 +18,7 @@
 
   # NOTE: nix version is manually kept in sync with home-manager
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     impermanence.url = "github:nix-community/impermanence";
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -29,7 +29,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -78,7 +78,7 @@
         };
     in
     {
-      formatter = forEachSystem (s: nixpkgs.legacyPackages.${s}.nixfmt-rfc-style);
+      formatter = forEachSystem (s: nixpkgs.legacyPackages.${s}.nixfmt);
 
       packages = forEachSystem (s: pkgsForSystem s nixpkgs);
 

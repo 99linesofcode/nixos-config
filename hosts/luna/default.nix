@@ -21,6 +21,9 @@ with lib;
   boot.kernelParams = [
     "mds=full,nosmt" # see: https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html
     "mmio_stale_data=full,nosmt" # see: https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/processor_mmio_stale_data.html
+    "nvme_core.default_ps_max_latency_us=0"
+    "pcie_aspm=off"
+    "pcie_port_pm=off"
   ];
 
   environment.systemPackages = with pkgs; [
@@ -47,10 +50,8 @@ with lib;
     user.${username}.enable = true;
 
     efi.enable = true;
-    encryption.enable = true;
     btrfs.enable = true;
     impermanence.enable = true;
-    swap.enable = true;
 
     network = {
       hostname = "luna";
@@ -70,10 +71,21 @@ with lib;
     graphics.enable = true;
     hyprland.enable = true;
     intel.enable = true;
-    # k3s.enable = true;
+    k3s = {
+      enable = true;
+      nodeExternalIP = "10.0.0.1";
+    };
     nvidia.enable = true;
     power-management.enable = true;
     rclone.enable = true;
+    restic = {
+      enable = true;
+      repository = "rclone:gdrive:Restic/luna";
+      paths = [
+        "/home/shorty/.config"
+        "/home/shorty/Documents/Obsidian"
+      ];
+    };
     sound.enable = true;
     openssh.enable = true;
     qmk.enable = true;
@@ -87,13 +99,23 @@ with lib;
   };
 
   services = {
+    fwupd.enable = true;
     # TODO: extract automatic timezoned and geolocate to module for portable devices?
     automatic-timezoned.enable = true;
     geoclue2 = {
       enableDemoAgent = mkForce true; # FIXME: see https://github.com/NixOS/nixpkgs/issues/68489#issuecomment-1484030107
       geoProviderUrl = "https://beacondb.net/v1/geolocate";
     };
-    getty.autologinUser = "${username}"; # hardcoded because this is a single user system
+    greetd = {
+      enable = true;
+      settings = rec {
+        initial_session = {
+          command = "${pkgs.uwsm}/bin/uwsm start hyprland-uwsm.desktop";
+          user = "${username}";
+        };
+        default_session = initial_session;
+      };
+    };
     pipewire.wireplumber.extraConfig."luna-20" = {
       "monitor.alsa.rules" = [
         {

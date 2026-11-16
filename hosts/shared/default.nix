@@ -26,6 +26,12 @@ with lib;
   };
 
   services = {
+    journald = {
+      storage = "persistent";
+      extraConfig = ''
+        SystemMaxUse=500M
+      '';
+    };
     keyd = {
       enable = true;
       keyboards.default.settings = {

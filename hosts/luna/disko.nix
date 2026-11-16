@@ -18,24 +18,18 @@ in
                 format = "vfat";
                 mountpoint = "/boot";
                 mountOptions = [
-                  "fmask=0022"
-                  "dmask=0022"
+                  "umask=0077"
                 ];
-              };
-            };
-            swap = {
-              size = "48G";
-              content = {
-                type = "swap";
               };
             };
             luks = {
               size = "100%";
               content = {
                 type = "luks";
-                name = "pool0_0";
+                name = "cryptroot";
                 settings = {
                   allowDiscards = true;
+                  bypassWorkqueues = true;
                 };
                 content = {
                   type = "btrfs";
@@ -81,6 +75,12 @@ in
                         "compress=zstd"
                         "noatime"
                       ];
+                    };
+                    "/swap" = {
+                      mountpoint = "/swap";
+                      swap = {
+                        swapfile.size = "32G";
+                      };
                     };
                   };
                 };

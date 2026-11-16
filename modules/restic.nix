@@ -7,9 +7,28 @@ with lib;
 {
   options.host.restic = {
     enable = mkEnableOption "restic";
+
+    repository = mkOption {
+      type = types.str;
+      default = "rclone:gdrive:Restic";
+      description = "Restic repository to back up to.";
+    };
+
+    paths = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      description = "Paths to include in the backup.";
+    };
   };
 
   config = mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = config.host.rclone.enable;
+        message = "host.restic depends on host.rclone for the gdrive repository and rclone.conf secret.";
+      }
+    ];
+
     sops.secrets = {
       "restic/passwd" = {
         format = "binary";
@@ -19,7 +38,7 @@ with lib;
 
     services.restic = {
       backups = {
-        remotebackup = {
+        remote = {
           initialize = true;
           passwordFile = config.sops.secrets."restic/passwd".path;
           pruneOpts = [
@@ -28,8 +47,9 @@ with lib;
             "--keep-monthly 2"
             "--group-by tags"
           ];
-          repository = "rclone:gdrive:Restic";
+          repository = cfg.repository;
           rcloneConfigFile = config.sops.secrets."rclone/rclone.conf".path;
+          paths = cfg.paths;
         };
       };
     };
