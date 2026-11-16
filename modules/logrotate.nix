@@ -29,16 +29,16 @@ with lib;
   config = mkIf cfg.enable {
     services.logrotate = {
       enable = true;
-      settings."/home/${cfg.user}/.local/state/opencode-skill-router/*.jsonl" = {
-        frequency = "weekly";
-        rotate = cfg.rotate;
-        missingok = true;
-        notifempty = true;
-        compress = true;
-        delaycompress = true;
-        create = "0600 ${cfg.user} ${cfg.group}";
-        su = "${cfg.user} ${cfg.group}";
-      };
+      # settings."/home/${cfg.user}/.local/state/opencode-skill-router/*.jsonl" = {
+      #   frequency = "weekly";
+      #   rotate = 12;
+      #   missingok = true;
+      #   notifempty = true;
+      #   compress = true;
+      #   delaycompress = true;
+      #   create = "0600 shorty users";
+      #   su = "shorty users";
+      # };
     };
   };
 }
