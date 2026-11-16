@@ -21,6 +21,9 @@ with lib;
   boot.kernelParams = [
     "mds=full,nosmt" # see: https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/mds.html
     "mmio_stale_data=full,nosmt" # see: https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/processor_mmio_stale_data.html
+    "nvme_core.default_ps_max_latency_us=0"
+    "pcie_aspm=off"
+    "pcie_port_pm=off"
   ];
 
   environment.systemPackages = with pkgs; [
@@ -96,6 +99,7 @@ with lib;
   };
 
   services = {
+    fwupd.enable = true;
     # TODO: extract automatic timezoned and geolocate to module for portable devices?
     automatic-timezoned.enable = true;
     geoclue2 = {
